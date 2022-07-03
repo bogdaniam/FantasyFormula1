@@ -1,7 +1,7 @@
 
 const Usuario = require('../models/Usuario');
 const Ranking = require('../models/Ranking');
-const { encrypt } = require('../helpers/handleBcrypt');
+const { encrypt, compare } = require('../helpers/handleBcrypt');
 
 
 
@@ -56,26 +56,68 @@ const usuarios = {
           res.send("Registro con exito");
         } else {
 
-
           res.send("Datos invalidos");
         }
-
-
 
       } else {
         res.send("El usuario existe");
       }
-
-
-
     } catch (error) {
       console.error(error);
       res.send("Error");
     }
+  },
 
 
+  login: async (req, res) => {
+    try {
+      const { usuarioLogin, passwordLogin } = req.body;
+      const usuario = await Usuario.findOne({
+        where: { email: usuarioLogin },
+      });
 
-  }
+      if (!usuario) {
+        res.send("El usuario no existe");
+      }
+      const checkPassword = await compare(passwordLogin, usuario.contrasena);
+
+      if (checkPassword) {
+        res.send(`Bienvenido ${usuario.nombre}. Login ok`);
+
+
+      } else {
+        res.send("Contraseña erronea");
+      }
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+  verRanking: async (req, res) => {
+    try {
+
+ 
+      const objPuntos = await Ranking.findAll({order: [['puntos', 'desc']]});
+      let ranking ={};
+      let usuarios = {};
+
+      for (let i = 0; i < objPuntos.length; i++){
+        usuarios[i] = await Usuario.findOne({
+          where: { fk_ranking: objPuntos[i].id_ranking },
+        });
+        ranking[`${usuarios[i].dataValues.nombre}`] = `${objPuntos[i].puntos}`
+      }
+
+      res.send(ranking);
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+  
 
 
 };

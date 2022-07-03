@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(require('./routes/routes'));
-//require('./databases/mongo');
+require('./databases/mongo');
 require('./databases/mysql');
 
 const port = 3000;
