@@ -5,6 +5,8 @@ const infopilotoSchema = new Schema({
   nombre: String,
   apellidos: String,
   fechanacimiento: String,
+  lugarnacimiento: String,
+  equipoactual: String,
   infopiloto: String,
 });
 

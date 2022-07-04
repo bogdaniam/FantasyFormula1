@@ -71,26 +71,36 @@ const usuarios = {
 
   login: async (req, res) => {
     try {
-      const { usuarioLogin, passwordLogin } = req.body;
+      
+      const usuarioLogin = req.body.respuesta.usuarioLogin
+      const passwordLogin = req.body.respuesta.passwordLogin
+
+      //const { usuarioLogin, passwordLogin } = req.body;
       const usuario = await Usuario.findOne({
         where: { email: usuarioLogin },
+        
       });
-
+      //console.log(usuarioLogin)
+      //console.log(passwordLogin)
       if (!usuario) {
+      
         res.send("El usuario no existe");
       }
       const checkPassword = await compare(passwordLogin, usuario.contrasena);
 
       if (checkPassword) {
-        res.send(`Bienvenido ${usuario.nombre}. Login ok`);
-
+        
+        //res.send(`Bienvenido ${usuario.nombre}. Login ok`);
+        res.json({
+          message: `Bienvenido ${usuario.nombre}. Login ok`,
+        });
 
       } else {
         res.send("Contraseña erronea");
       }
     } catch (error) {
-      console.error(error);
-      res.send(error);
+        console.error(error);
+        res.send(error);
     }
   },
 
