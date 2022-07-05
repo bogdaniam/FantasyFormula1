@@ -12,4 +12,6 @@ require('./databases/mongo');
 require('./databases/mysql');
 
 const port = 5000;
-app.listen(port, () => console.log(`Servidor escuchando por el puerto ${port}!`));
+//app.listen(port, () => console.log(`Servidor escuchando por el puerto ${port}!`));
+
+app.listen(port, () => console.log(`Express: I'm up and running 😁`));

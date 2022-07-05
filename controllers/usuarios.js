@@ -7,31 +7,29 @@ const { encrypt, compare } = require('../helpers/handleBcrypt');
 
 
 const usuarios = {
-  /*registro: (req, res) => {
-    try {
-      res.render('../views/pages/registro');
-    } catch (error) {
-      console.error(error);
-      res.status(500);
-      res.render('../views/pages/404');
-    }
-  },*/
+  
   registro: async (req, res) => {
-
+      console.log("backend")
     try {
+      const nombre = req.body.respuesta.name
+      const apellido = req.body.respuesta.lastname
+      const email = req.body.respuesta.email
+      const contrasena = req.body.respuesta.password
 
-      const {
-        nombre,
-        apellido,
-        email,
-        contrasena,
-      } = req.body;
+
+      // const {
+      //   nombre,
+      //   apellido,
+      //   email,
+      //   contrasena,
+      // } = req.body;
       const passwordHash = await encrypt(contrasena);
 
       const usuarioComprobacion = await Usuario.findOne({
         where: { email: email },
       });
-
+      console.log(passwordHash)
+      console.log(usuarioComprobacion)
       if (!usuarioComprobacion) {
 
         if (
@@ -53,14 +51,22 @@ const usuarios = {
             presupuesto: 20000000,
             rol: "user",
           });
-          res.send("Registro con exito");
+          res.json({
+            message: "Registro con exito",
+          });
+          //res.send("Registro con exito");
         } else {
-
-          res.send("Datos invalidos");
+          res.json({
+            message: "Datos invalidos",
+          });
+          //res.send("Datos invalidos");
         }
 
       } else {
-        res.send("El usuario existe");
+        res.json({
+          message: "El usuario existe",
+        });
+        //res.send("El usuario existe");
       }
     } catch (error) {
       console.error(error);
@@ -84,7 +90,10 @@ const usuarios = {
       //console.log(passwordLogin)
       if (!usuario) {
       
-        res.send("El usuario no existe");
+        //res.send("El usuario no existe");
+        res.json({
+          message: "El usuario no existe",
+        });
       }
       const checkPassword = await compare(passwordLogin, usuario.contrasena);
 
@@ -96,7 +105,10 @@ const usuarios = {
         });
 
       } else {
-        res.send("Contraseña erronea");
+        //res.send("Contraseña erronea");
+        res.json({
+          message: `Contraseña erronea`,
+        });
       }
     } catch (error) {
         console.error(error);
