@@ -2,14 +2,16 @@
 import "./App.css";
 import Login from './components/Login';
 import Registro from './components/Registro';
+import Verpilotos from './components/Verpilotos';
 const App = () => {
 
 
 //<Login/>
+//<Registro/>
   return (
     <div className="App">
-      <Login/>
-      <Registro/>
+      
+      <Verpilotos/>
 
     </div>
   );

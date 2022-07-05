@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-const login = () => {
+
+
+const Login = () => {
+
   const [message, setMessage] = useState("");
   const [user, setUser] = useState("");
   const [contrasena, setContrasena] = useState("")
-
-
-
-
-
 
 
 
@@ -45,4 +43,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

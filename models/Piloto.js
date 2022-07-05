@@ -20,6 +20,9 @@ const Piloto = sequelize.define('pilotos', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  
+  foto: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 });
 module.exports = Piloto;

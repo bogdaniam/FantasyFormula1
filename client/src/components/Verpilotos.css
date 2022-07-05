@@ -1,0 +1,8 @@
+.App{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1%;
+}
+.cargando{
+  text-align: center;
+}
