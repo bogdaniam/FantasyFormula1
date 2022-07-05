@@ -7,7 +7,7 @@ function Verpilotos() {
 
   //const foto = "albon.jpg"
   const [pilotos, setPilotos] = useState("");
-  console.log(pilotos)
+  //console.log(pilotos)
   useEffect(() => {
    
     fetch("verPilotos")

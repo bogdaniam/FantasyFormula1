@@ -129,7 +129,35 @@ const usuarios = {
           where: { fk_ranking: objPuntos[i].id_ranking },
         });
         ranking[`${usuarios[i].dataValues.nombre}`] = `${objPuntos[i].puntos}`
+        //ranking[i] = (`${usuarios[i].dataValues.nombre}`, `${objPuntos[i].puntos}`);
+
       }
+      
+      // for (let i = 0; i < objPuntos.length; i++){
+      //   usuarios[i] = await Usuario.findOne({
+      //     where: { fk_ranking: objPuntos[i].id_ranking },
+      //   });
+      //   //ranking`${usuarios[i].dataValues.nombre}` = `${objPuntos[i].puntos}`
+      //   ranking[i][0] = `${usuarios[i].dataValues.nombre}`;
+      //   ranking[i][1] = `${objPuntos[i].puntos}`;
+      // }
+
+
+
+      for (let key in ranking) {
+
+    
+        //console.log(key)
+       
+        //console.log(ranking[`${key}`])
+
+        
+
+    }
+      console.log(Object.keys(ranking).length)
+
+
+
 
       res.send(ranking);
 
