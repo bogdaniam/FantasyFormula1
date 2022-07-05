@@ -36,7 +36,7 @@ const Registro = () => {
 
 
   return (
-    <div className="App">
+    <div className="flex">
       <h1>{message ? message : "Registro"}</h1>
 
       <input type="text" onChange={(e) => setNombre(e.target.value)} />

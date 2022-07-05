@@ -30,7 +30,7 @@ const Login = () => {
 
 
   return (
-    <div className="App">
+    <div className="flex">
       <h1>{message ? message : "Introduce tus credenciales"}</h1>
 
 

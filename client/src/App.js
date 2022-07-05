@@ -8,9 +8,11 @@ const App = () => {
 
 //<Login/>
 //<Registro/>
+//Verpilotos
   return (
-    <div className="App">
-      
+    <div className="flex">
+      <Login/>
+      <Registro/>
       <Verpilotos/>
 
     </div>
