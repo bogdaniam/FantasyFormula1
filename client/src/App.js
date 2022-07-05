@@ -11,8 +11,7 @@ const App = () => {
 //Verpilotos
   return (
     <div className="flex">
-      <Login/>
-      <Registro/>
+
       <Verpilotos/>
 
     </div>

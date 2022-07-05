@@ -17,7 +17,7 @@ function Verpilotos() {
   }, [])
 
   return (
-    <div className="App">
+    <div className="flex" class = "divpilotos">
 
       {pilotos ? pilotos.map((piloto, i) => {
         return (

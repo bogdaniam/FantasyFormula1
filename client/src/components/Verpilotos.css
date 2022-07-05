@@ -6,3 +6,9 @@
 .cargando{
   text-align: center;
 }
+
+.divpilotos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
