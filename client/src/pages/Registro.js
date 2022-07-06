@@ -1,13 +1,14 @@
 import React , {Component} from "react"
+import Registro from '../components/Registro';
 
-class About extends Component{
+class Registrar extends Component{
 
     render() {
         return (
             <div>
-                ESTE ES EL COMPONENTE ABOUT
+                <Registro/>
             </div>
             );
     }
 }
-export default About
+export default Registrar

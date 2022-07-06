@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "../components/Login.css";
 
 
 
@@ -31,11 +31,13 @@ const Login = () => {
 
   return (
     <div className="flex">
-      <h1>{message ? message : "Introduce tus credenciales"}</h1>
+      <h1>{message ? message : "Bienvenido"}</h1>
 
-
-      <input type="text" onChange={(e) => setUser(e.target.value)} />
-      <input type="text" onChange={(e) => setContrasena(e.target.value)} />
+      <label for="usuarioLogin">Introduce tu email</label>
+      <input if="usuarioLogin" type="text" onChange={(e) => setUser(e.target.value)} />
+      <label for="contrasenaLogin">Introduce tu contraseña</label>
+      <input id="contrasenaLogin" type="text" onChange={(e) => setContrasena(e.target.value)} />
+      <br/>
       <button onClick={() => sendData()}>Log in</button>
 
 

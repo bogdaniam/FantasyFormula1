@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Registro.css";
+import "../components/Login.css";
 
 const Registro = () => {
   const [message, setMessage] = useState("");
@@ -38,11 +38,18 @@ const Registro = () => {
   return (
     <div className="flex">
       <h1>{message ? message : "Registro"}</h1>
+      <label for="nombreRegistro">Introduce tu email</label>
+      <input id="nombreRegistro" type="text" onChange={(e) => setNombre(e.target.value)} />
 
-      <input type="text" onChange={(e) => setNombre(e.target.value)} />
-      <input type="text" onChange={(e) => setApellido(e.target.value)} />
-      <input type="text" onChange={(e) => setUser(e.target.value)} />
-      <input type="text" onChange={(e) => setContrasena(e.target.value)} />
+      <label for="apellidoRegistro">Introduce tu email</label>
+      <input id="apellidoRegistro" type="text" onChange={(e) => setApellido(e.target.value)} />
+
+      <label for="emailRegistro">Introduce tu email</label>
+      <input id="emailRegistro" type="text" onChange={(e) => setUser(e.target.value)} />
+
+      <label for="contrasenaRegistro">Introduce tu contrasena</label>
+      <input id="contrasenaRegistro" type="text" onChange={(e) => setContrasena(e.target.value)} />
+      <br/>
       <button onClick={() => sendData()}>Registro</button>
 
 

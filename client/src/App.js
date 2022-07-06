@@ -25,6 +25,7 @@
 import React, { Component } from "react";
 import { BrowserRouter ,Link } from "react-router-dom";
 import MainComponent from "./components/Main";
+import Navbar from "./components/Navbar";
 import "./App.css"
 
 class App extends Component {
@@ -35,9 +36,8 @@ render() {
         <BrowserRouter>
             <div class="mainapp">
                 <div class="navb">
-                <Link to={"/about"}>About</Link>
-                <Link to={"/verpilotos"}>Pilotos</Link>
-                <Link to={"/ranking"}>Ranking</Link>
+                <Navbar />
+               
                 </div>
                 <div><MainComponent /></div>
                 
