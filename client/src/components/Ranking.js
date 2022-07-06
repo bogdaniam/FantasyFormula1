@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-//import './Verpilotos.css';
+import './Ranking.css';
 import { Card } from 'react-bootstrap'
 
 
@@ -14,25 +14,22 @@ function Ranking() {
 
     }, [])
 
+
+
     return (
-        <div className="flex" class="divpilotos">
+        <div className="flex" class="ranking">
 
+            {ranking ? ranking.map((rank, i) => {
+                return (
+                    <Card style={{ width: '18rem' }} key={i} >
 
-            {(() => {
+                        <Card.Body>
+                            <Card.Title>{i + 1}. {rank.name}: {rank.points} puntos </Card.Title>
+                        </Card.Body>
+                    </Card>
+                )
+            }) : <p className="cargando"> Cargando Ranking . . . </p>}
 
-                for (let key in ranking) {
-                    return (
-                        <Card style={{ width: '18rem' }}>
-
-                            <Card.Body>
-                                <Card.Title>{key} {ranking[`${key}`]} puntos</Card.Title>
-                               
-                            </Card.Body>
-                        </Card>
-                    )
-                }
-
-            })()}
 
 
 

@@ -21,7 +21,7 @@ function Verpilotos() {
 
       {pilotos ? pilotos.map((piloto, i) => {
         return (
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: '18rem' }} key={i}>
             <Card.Img variant="top" src={`./img/${piloto.foto}`} />
             <Card.Body>
               <Card.Title>{piloto.nombre}</Card.Title>

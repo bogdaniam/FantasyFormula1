@@ -121,14 +121,24 @@ const usuarios = {
 
  
       const objPuntos = await Ranking.findAll({order: [['puntos', 'desc']]});
-      let ranking ={};
+      let ranking =[];
       let usuarios = {};
 
       for (let i = 0; i < objPuntos.length; i++){
         usuarios[i] = await Usuario.findOne({
           where: { fk_ranking: objPuntos[i].id_ranking },
         });
-        ranking[`${usuarios[i].dataValues.nombre}`] = `${objPuntos[i].puntos}`
+
+        let data = {
+          name: usuarios[i].dataValues.nombre,
+          points: objPuntos[i].puntos
+        }
+        ranking.push(data)
+
+
+
+
+        //ranking[`${usuarios[i].dataValues.nombre}`] = `${objPuntos[i].puntos}`
         //ranking[i] = (`${usuarios[i].dataValues.nombre}`, `${objPuntos[i].puntos}`);
 
       }
@@ -144,7 +154,7 @@ const usuarios = {
 
 
 
-      for (let key in ranking) {
+      //for (let key in ranking) {
 
     
         //console.log(key)
@@ -153,8 +163,8 @@ const usuarios = {
 
         
 
-    }
-      console.log(Object.keys(ranking).length)
+    //}
+      //console.log(Object.keys(ranking).length)
 
 
 
