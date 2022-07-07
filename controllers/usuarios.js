@@ -100,9 +100,19 @@ const usuarios = {
       if (checkPassword) {
         
         //res.send(`Bienvenido ${usuario.nombre}. Login ok`);
+        
         res.json({
-          message: `Bienvenido ${usuario.nombre}. Login ok`,
-        });
+          message: true,
+          id: usuario.id_usuario, 
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
+          rol: usuario.rol  
+      })
+
+        //console.log(usuario)
+        // res.json({
+        //   message: `Bienvenido ${usuario.nombre}. Login ok`,
+        // });
 
       } else {
         //res.send("Contraseña erronea");

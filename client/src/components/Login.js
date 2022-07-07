@@ -22,10 +22,35 @@ const Login = () => {
       body: JSON.stringify({ respuesta }),
     };
 
-    fetch("login", requestOptions)
-      .then((response) => response.json())
-      .then((res) => setMessage(res.message));
-  };
+  //   fetch("login", requestOptions)
+  //     .then((response) => response.json())
+  //     .then((res) => setMessage(res.message));
+  // };
+  fetch("login", requestOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                setInterval(() => {
+                    if (res.message === true) {
+                        localStorage.setItem('user', JSON.stringify({
+                            logId: res.id,
+                            logNombre: res.nombre,
+                            logApellido: res.apellido,
+                            rol: res.rol,
+                            
+                        }));
+                        //window.location.assign(“/UPage”);
+                    } else {
+                        alert("Usuario o contraseña incorrectos")
+                    }
+                }
+                    , 1000);
+            });
+          }
+
+
+
+
+
 
 
 
