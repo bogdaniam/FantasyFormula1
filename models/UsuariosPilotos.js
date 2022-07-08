@@ -16,5 +16,10 @@ const UsuariosPilotos = sequelize.define('usuario_piloto', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  estado: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+  },
+  
 });
 module.exports = UsuariosPilotos;

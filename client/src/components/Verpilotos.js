@@ -22,52 +22,83 @@ function Verpilotos() {
   //   .then((response) => response.json())
   //   .then((res) => setMessage(res.message));
 
-const vender = (user, id) => {
-  console.log("vendido")
-  console.log(`Usuario ${user}`)
-  console.log(`id ${id}`)
-  let respuesta = {user: user, id:id}
-  console.log(respuesta)
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ respuesta }),
-  };
+  const vender = (user, id) => {
+    console.log("vendido")
+    console.log(`Usuario ${user}`)
+    console.log(`id ${id}`)
+    let respuesta = { user: user, id: id }
+    console.log(respuesta)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ respuesta }),
+    };
 
-  fetch("vender", requestOptions)
+    fetch("vender", requestOptions)
       .then((res) => res.json())
       .then((res) => {
-        setInterval(() => {window.location.assign("/verpilotos");}, 1000);
-    });
+        setInterval(() => { window.location.assign("/verpilotos"); }, 300);
+      });
+  }
 
-}
+  const activar = (user, id) => {
+    console.log("Piloto activado")
+    let respuesta = { user: user, id: id }
+    console.log(respuesta)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ respuesta }),
+    };
+    fetch("activar", requestOptions)
+      .then((res) => res.json())
+      .then((res) => {
+        setInterval(() => { window.location.assign("/verpilotos"); }, 300);
+      });
+  }
 
 
+  
+  const desactivar = (user, id) => {
+    console.log("Piloto desactivado")
+    let respuesta = { user: user, id: id }
+    console.log(respuesta)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ respuesta }),
+    };
+    fetch("desactivar", requestOptions)
+      .then((res) => res.json())
+      .then((res) => {
+        setInterval(() => { window.location.assign("/verpilotos"); }, 300);
+      });
+  }
 
 
-const comprar = (user, id) => {
-  //console.log(`Usuario ${user}`)
-  //console.log(`id ${id}`)
-  //console.log("comprado")
+  const comprar = (user, id) => {
+    //console.log(`Usuario ${user}`)
+    //console.log(`id ${id}`)
+    //console.log("comprado")
 
-  let respuesta = {user: user, id:id}
-  console.log(respuesta)
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ respuesta }),
-  };
-  fetch("comprar", requestOptions)
+    let respuesta = { user: user, id: id }
+    console.log(respuesta)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ respuesta }),
+    };
+    fetch("comprar", requestOptions)
       .then((res) => res.json())
       .then((res) => {
         setInterval(() => {
-            
-                window.location.assign("/verpilotos");
-            
+
+          window.location.assign("/verpilotos");
+
         }
-            , 1000);
-    });
-}
+          , 300);
+      });
+  }
 
 
 
@@ -75,7 +106,7 @@ const comprar = (user, id) => {
   useEffect(() => {
 
     //para ver los pilotos de un usuario
-    let respuesta = {logId: JSON.parse(localStorage.getItem('user')).logId}
+    let respuesta = { logId: JSON.parse(localStorage.getItem('user')).logId }
     console.log(respuesta)
     const requestOptions = {
       method: 'POST',
@@ -86,7 +117,7 @@ const comprar = (user, id) => {
       .then((res) => res.json())
       .then(res => { console.log(res); setPilotos(res) })
 
-    
+
     //para ver todos los pilotos
     // fetch("verPilotos")
     //   .then((res) => res.json())
@@ -98,38 +129,55 @@ const comprar = (user, id) => {
     <div className="flex" class="divpilotos">
       <p className="cargando"> Pilotos Activos</p>
       <div class="pilotosusuario">
-      
-      {pilotos[0] ? pilotos[0].map((piloto, i) => {
-        return (
-          <Card style={{ width: '18rem' }} key={i}>
-            <Card.Img variant="top" src={`./img/${piloto.foto}`} />
-            
-            <Card.Body>
-              <Card.Title>{piloto.nombre}</Card.Title>
-              <Card.Text>{piloto.apellido}</Card.Text>
-              <Button onClick={()=>vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
-            </Card.Body>
-          </Card>
-        )
-      }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+
+        {pilotos[0] ? pilotos[0].map((piloto, i) => {
+          return (
+            <Card style={{ width: '18rem' }} key={i}>
+              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+
+              <Card.Body>
+                <Card.Title>{piloto.nombre}</Card.Title>
+                <Card.Text>{piloto.apellido}</Card.Text>
+                <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
+                <Button onClick={() => desactivar(piloto.userid, piloto.id_piloto)} class="desactivado">Desactivar</Button>
+              </Card.Body>
+            </Card>
+          )
+        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+
+          {pilotos[1] ? pilotos[1].map((piloto, i) => {
+          return (
+            <Card style={{ width: '18rem' }} key={i}>
+              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+
+              <Card.Body>
+                <Card.Title>{piloto.nombre}</Card.Title>
+                <Card.Text>{piloto.apellido}</Card.Text>
+                <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
+                <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} class="activado">Activar</Button>
+              </Card.Body>
+            </Card>
+          )
+        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+
       </div>
 
       <p className="cargando"> Pilotos Restantes</p>
       <div class="pilotosusuario">
-      
-{pilotos[1] ? pilotos[1].map((piloto, i) => {
-        return (
-          <Card style={{ width: '18rem' }} key={i}>
-            <Card.Img variant="top" src={`./img/${piloto.foto}`} />
-            
-            <Card.Body>
-              <Card.Title>{piloto.nombre}</Card.Title>
-              <Card.Text>{piloto.apellido}</Card.Text>
-              <Button onClick={()=>comprar(piloto.userid, piloto.id_piloto)} >Comprar</Button>
-            </Card.Body>
-          </Card>
-        )
-      }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+
+        {pilotos[2] ? pilotos[2].map((piloto, i) => {
+          return (
+            <Card style={{ width: '18rem' }} key={i}>
+              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+
+              <Card.Body>
+                <Card.Title>{piloto.nombre}</Card.Title>
+                <Card.Text>{piloto.apellido}</Card.Text>
+                <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} >Comprar</Button>
+              </Card.Body>
+            </Card>
+          )
+        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
       </div>
     </div>
   );

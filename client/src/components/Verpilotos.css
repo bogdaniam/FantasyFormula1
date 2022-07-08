@@ -20,3 +20,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.desactivado{
+  background-color: grey;
+}
+
+.activado {
+  background-color: yellow;
+}
