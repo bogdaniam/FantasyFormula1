@@ -110,5 +110,27 @@ const pilotos = {
     }
   },
 
+
+  vender: async (req, res) => {
+    try {
+      const { user, id } = req.body.respuesta;
+
+      const piloto = await UsuariosPilotos.destroy({
+        where: { fk_usuario: user, fk_piloto: id },
+      });
+
+      
+
+      //console.log(usuario);
+      res.json({
+        message: true
+        
+    })
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
 };
 module.exports = pilotos;

@@ -7,7 +7,7 @@ const pilotos = require('../controllers/pilotos');
 const router = express.Router();
 
 const { registro, login, verRanking} = usuarios;
-const { infopiloto, verPilotos, comprar} = pilotos;
+const { infopiloto, verPilotos, comprar, vender} = pilotos;
 
 //router.get('/registro', registro);
 router.post('/registro', urlencodedParser, registro);
@@ -17,6 +17,7 @@ router.post('/verPilotos', urlencodedParser, verPilotos);
 router.get('/ranKing', verRanking);
 router.get('/infopilotos', infopiloto);
 router.post('/comprar', comprar);
+router.post('/vender', vender);
 
 
 
