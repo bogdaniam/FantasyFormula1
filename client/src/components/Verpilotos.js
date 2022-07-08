@@ -22,8 +22,35 @@ function Verpilotos() {
   //   .then((response) => response.json())
   //   .then((res) => setMessage(res.message));
 
-const vender = () => {
+const vender = (user, id) => {
   console.log("vendido")
+  console.log(`Usuario ${user}`)
+  console.log(`id ${id}`)
+
+}
+
+const comprar = (user, id) => {
+  //console.log(`Usuario ${user}`)
+  //console.log(`id ${id}`)
+  //console.log("comprado")
+
+  let respuesta = {user: user, id:id}
+  console.log(respuesta)
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ respuesta }),
+  };
+  fetch("comprar", requestOptions)
+      .then((res) => res.json())
+      .then((res) => {
+        setInterval(() => {
+            
+                window.location.assign("/verpilotos");
+            
+        }
+            , 1000);
+    });
 }
 
 
@@ -43,7 +70,7 @@ const vender = () => {
       .then((res) => res.json())
       .then(res => { console.log(res); setPilotos(res) })
 
-
+    
     //para ver todos los pilotos
     // fetch("verPilotos")
     //   .then((res) => res.json())
@@ -53,8 +80,10 @@ const vender = () => {
 
   return (
     <div className="flex" class="divpilotos">
-
-      {pilotos ? pilotos.map((piloto, i) => {
+      <p className="cargando"> Pilotos Activos</p>
+      <div class="pilotosusuario">
+      
+      {pilotos[0] ? pilotos[0].map((piloto, i) => {
         return (
           <Card style={{ width: '18rem' }} key={i}>
             <Card.Img variant="top" src={`./img/${piloto.foto}`} />
@@ -62,12 +91,30 @@ const vender = () => {
             <Card.Body>
               <Card.Title>{piloto.nombre}</Card.Title>
               <Card.Text>{piloto.apellido}</Card.Text>
-              <Button onClick={()=>vender()} >Verder</Button>
+              <Button onClick={()=>vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
             </Card.Body>
           </Card>
         )
       }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+      </div>
 
+      <p className="cargando"> Pilotos Restantes</p>
+      <div class="pilotosusuario">
+      
+{pilotos[1] ? pilotos[1].map((piloto, i) => {
+        return (
+          <Card style={{ width: '18rem' }} key={i}>
+            <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+            
+            <Card.Body>
+              <Card.Title>{piloto.nombre}</Card.Title>
+              <Card.Text>{piloto.apellido}</Card.Text>
+              <Button onClick={()=>comprar(piloto.userid, piloto.id_piloto)} >Comprar</Button>
+            </Card.Body>
+          </Card>
+        )
+      }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+      </div>
     </div>
   );
 }
