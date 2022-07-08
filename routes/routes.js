@@ -12,7 +12,8 @@ const { infopiloto, verPilotos} = pilotos;
 //router.get('/registro', registro);
 router.post('/registro', urlencodedParser, registro);
 router.post('/login', urlencodedParser, login);
-router.get('/verPilotos', urlencodedParser, verPilotos); //under construction
+//router.get('/verPilotos', urlencodedParser, verPilotos); 
+router.post('/verPilotos', urlencodedParser, verPilotos); 
 router.get('/ranKing', verRanking);
 router.get('/infopilotos', infopiloto);
 

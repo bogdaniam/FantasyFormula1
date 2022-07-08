@@ -38,7 +38,7 @@ const Login = () => {
                             rol: res.rol,
                             
                         }));
-                        //window.location.assign(“/UPage”);
+                        window.location.assign("/verpilotos");
                     } else {
                         alert("Usuario o contraseña incorrectos")
                     }
@@ -61,7 +61,7 @@ const Login = () => {
       <label for="usuarioLogin">Introduce tu email</label>
       <input if="usuarioLogin" type="text" onChange={(e) => setUser(e.target.value)} />
       <label for="contrasenaLogin">Introduce tu contraseña</label>
-      <input id="contrasenaLogin" type="text" onChange={(e) => setContrasena(e.target.value)} />
+      <input id="contrasenaLogin" type="password" onChange={(e) => setContrasena(e.target.value)} />
       <br/>
       <button onClick={() => sendData()}>Log in</button>
 

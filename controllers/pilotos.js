@@ -1,5 +1,6 @@
 const infopiloto = require('../models/Infopiloto');
 const Pilotos = require('../models/Piloto');
+const UsuariosPilotos = require('../models/UsuariosPilotos');
 
 const pilotos = {
   
@@ -20,10 +21,39 @@ const pilotos = {
   },
   verPilotos: async (req, res) => {
     try {
+
+      let fkuserid = req.body.respuesta.logId;
+      //const usuarioPiloto = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid }});
+      //const pilotos = await Pilotos.findAll({ where: { id_piloto: usuarioPiloto.fk_piloto }});
+      //console.log(usuarioPiloto)
+      //const piloto = await Pilotos.findAll({});
+
+      //se busca todos los pilotos que tiene el usuario logeado
+      const usuarioPiloto = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid }});
+      let pilotosFoto =[];
+      let piloto = {};
+      for (let i = 0; i < usuarioPiloto.length; i++){
+        piloto[i] = await Pilotos.findAll({ where: { id_piloto: usuarioPiloto[i].fk_piloto }});
+        //console.log(piloto[i])
+        //console.log(usuarioPiloto)
+        let data = {
+        nombre: piloto[i][0].nombre,
+        apellido: piloto[i][0].apellido,
+        foto: piloto[i][0].foto
+        }
+        pilotosFoto.push(data)
+
+      }
+      //console.log(piloto[0][0])
       
-      const piloto = await Pilotos.findAll({});
-     // console.log(piloto)
-      res.send(piloto);
+      res.send(pilotosFoto);
+
+
+
+      //ver todos los pilotos
+    //  const piloto = await Pilotos.findAll({});
+    //  console.log(piloto)
+      //res.send(pilotosFoto);
     } catch (error) {
       console.error(error);
       res.send(error);
