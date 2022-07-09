@@ -1,6 +1,7 @@
 const infopiloto = require('../models/Infopiloto');
 const Pilotos = require('../models/Piloto');
 const UsuariosPilotos = require('../models/UsuariosPilotos');
+const Usuario = require('../models/Usuario');
 
 const pilotos = {
 
@@ -23,6 +24,10 @@ const pilotos = {
     try {
 
       let fkuserid = req.body.respuesta.logId;
+      const usuario = await Usuario.findOne({
+        where: { id_usuario: fkuserid },
+      });
+      console.log(usuario)
       //const usuarioPiloto = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid }});
       //const pilotos = await Pilotos.findAll({ where: { id_piloto: usuarioPiloto.fk_piloto }});
       //console.log(usuarioPiloto)
@@ -48,6 +53,7 @@ const pilotos = {
           apellido: piloto[i][0].apellido,
           foto: piloto[i][0].foto,
           id_piloto: piloto[i][0].id_piloto,
+          precio: piloto[i][0].precio,
           userid: fkuserid
         }
 
@@ -74,6 +80,7 @@ const pilotos = {
           apellido: piloto[i][0].apellido,
           foto: piloto[i][0].foto,
           id_piloto: piloto[i][0].id_piloto,
+          precio: piloto[i][0].precio,
           userid: fkuserid
         }
 
@@ -96,6 +103,7 @@ const pilotos = {
           apellido: piloto[i][0].apellido,
           foto: piloto[i][0].foto,
           id_piloto: piloto[i][0].id_piloto,
+          precio: piloto[i][0].precio,
           userid: fkuserid
         }
 
@@ -113,7 +121,9 @@ const pilotos = {
           {
             mensaje: true,
             mensaje2: pilotoActivar,
-            pilotosTodos
+            pilotosTodos,
+            presupuesto: usuario.presupuesto
+
           }
         )
 
@@ -122,7 +132,8 @@ const pilotos = {
           {
             mensaje: false,
             mensaje2: pilotoActivar,
-            pilotosTodos
+            pilotosTodos,
+            presupuesto: usuario.presupuesto
           }
         )
       }

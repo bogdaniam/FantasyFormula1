@@ -8,6 +8,7 @@ function Verpilotos() {
   const [pilotos, setPilotos] = useState("");
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
+  const [presupuesto, setPresupuesto] = useState("");
   //console.log(pilotos)
 
 
@@ -117,7 +118,7 @@ function Verpilotos() {
     };
     fetch("verPilotos", requestOptions)
       .then((res) => res.json())
-      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2) })
+      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setPresupuesto(res.presupuesto) })
 
 
     //para ver todos los pilotos
@@ -127,11 +128,13 @@ function Verpilotos() {
 
   }, [])
 
-  console.log(typeof message2)
+  //console.log(user)
 
   return (
     <div className="flex" class="divpilotos">
+      <p className="cargando"> {presupuesto} €</p>
       <p className="cargando"> Pilotos Activos</p>
+
       <div class="pilotosusuario">
 
         {pilotos[0] ? pilotos[0].map((piloto, i) => {
@@ -142,6 +145,7 @@ function Verpilotos() {
               <Card.Body>
                 <Card.Title>{piloto.nombre}</Card.Title>
                 <Card.Text>{piloto.apellido}</Card.Text>
+                <Card.Text>{piloto.precio} €</Card.Text>
                 <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
                 <Button onClick={() => desactivar(piloto.userid, piloto.id_piloto)} variant="success">Desactivar</Button>
               </Card.Body>
@@ -159,6 +163,7 @@ function Verpilotos() {
         <Card.Body>
           <Card.Title>{piloto.nombre}</Card.Title>
           <Card.Text>{piloto.apellido}</Card.Text>
+          <Card.Text>{piloto.precio} €</Card.Text>
           <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
           <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary">Activar</Button>
         </Card.Body>
@@ -174,6 +179,7 @@ function Verpilotos() {
             <Card.Body>
               <Card.Title>{piloto.nombre}</Card.Title>
               <Card.Text>{piloto.apellido}</Card.Text>
+              <Card.Text>{piloto.precio} €</Card.Text>
               <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
               <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary" disabled>Activar</Button>
             </Card.Body>
@@ -196,6 +202,7 @@ function Verpilotos() {
               <Card.Body>
                 <Card.Title>{piloto.nombre}</Card.Title>
                 <Card.Text>{piloto.apellido}</Card.Text>
+                <Card.Text>{piloto.precio} €</Card.Text>
                 <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)}>Comprar</Button>
               </Card.Body>
             </Card>
@@ -210,6 +217,7 @@ function Verpilotos() {
               <Card.Body>
                 <Card.Title>{piloto.nombre}</Card.Title>
                 <Card.Text>{piloto.apellido}</Card.Text>
+                <Card.Text>{piloto.precio} €</Card.Text>
                 <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} disabled>Comprar</Button>
               </Card.Body>
             </Card>

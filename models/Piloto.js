@@ -16,6 +16,10 @@ const Piloto = sequelize.define('pilotos', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  precio: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
   id_mongo: {
     type: Sequelize.STRING,
     allowNull: false,
