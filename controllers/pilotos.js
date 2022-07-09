@@ -194,9 +194,26 @@ const pilotos = {
     try {
       const { user, id } = req.body.respuesta;
 
-      const piloto = await UsuariosPilotos.destroy({
+      const pilotoBorrado = await UsuariosPilotos.destroy({
         where: { fk_usuario: user, fk_piloto: id },
       });
+      const usuario = await Usuario.findOne({
+        where: { id_usuario: user },
+      });
+      const piloto = await Pilotos.findOne({
+        where: { id_piloto: id },
+      });
+      //console.log(usuario.presupuesto)
+      //console.log(piloto.precio)
+      const nuevoPresupuesto1 = usuario.presupuesto + piloto.precio;
+      //console.log(nuevoPresupuesto1)
+
+
+      const nuevoPresupuesto = await Usuario.update({presupuesto: nuevoPresupuesto1},{
+        where: { id_usuario: user },
+      });
+      
+
 
 
 
