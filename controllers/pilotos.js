@@ -58,7 +58,12 @@ const pilotos = {
       }
       pilotosTodos.push(pilotosActivos)
 
-      
+      let pilotoActivar;
+      if (pilotosActivos.length < 2) {
+        pilotoActivar = true
+      } else {
+        pilotoActivar = false
+      }
 
       for (let i = 0; i < usuarioPilotoR.length; i++) {
         piloto[i] = await Pilotos.findAll({ where: { id_piloto: usuarioPilotoR[i].fk_piloto } });
@@ -101,17 +106,22 @@ const pilotos = {
       pilotosTodos.push(pilotosRestantes)
 
       //console.log(pilotosRestantes.length)
-      let data3= {}
-      if (pilotosRestantes.length>15){
+      console.log(pilotoActivar)
+      let data3 = {}
+      if (pilotosRestantes.length > 15) {
         res.json(
-          {mensaje: true,
+          {
+            mensaje: true,
+            mensaje2: pilotoActivar,
             pilotosTodos
           }
         )
 
       } else {
         res.json(
-          {mensaje: false,
+          {
+            mensaje: false,
+            mensaje2: pilotoActivar,
             pilotosTodos
           }
         )
@@ -163,32 +173,32 @@ const pilotos = {
         })
       }
     } catch (error) {
-  console.error(error);
-  res.send(error);
-}
+      console.error(error);
+      res.send(error);
+    }
   },
 
 
-vender: async (req, res) => {
-  try {
-    const { user, id } = req.body.respuesta;
+  vender: async (req, res) => {
+    try {
+      const { user, id } = req.body.respuesta;
 
-    const piloto = await UsuariosPilotos.destroy({
-      where: { fk_usuario: user, fk_piloto: id },
-    });
+      const piloto = await UsuariosPilotos.destroy({
+        where: { fk_usuario: user, fk_piloto: id },
+      });
 
 
 
-    //console.log(usuario);
-    res.json({
-      message: true
+      //console.log(usuario);
+      res.json({
+        message: true
 
-    })
-  } catch (error) {
-    console.error(error);
-    res.send(error);
-  }
-},
+      })
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
 
 
   activar: async (req, res) => {
@@ -214,27 +224,27 @@ vender: async (req, res) => {
     }
   },
 
-    desactivar: async (req, res) => {
-      try {
-        const { user, id } = req.body.respuesta;
+  desactivar: async (req, res) => {
+    try {
+      const { user, id } = req.body.respuesta;
 
-        const desactivarEstado = await UsuariosPilotos.update({
-          estado: false,
-        }, {
-          where: { fk_usuario: user, fk_piloto: id },
-        });
+      const desactivarEstado = await UsuariosPilotos.update({
+        estado: false,
+      }, {
+        where: { fk_usuario: user, fk_piloto: id },
+      });
 
 
-        //console.log(usuario);
-        res.json({
-          message: true
+      //console.log(usuario);
+      res.json({
+        message: true
 
-        })
-      } catch (error) {
-        console.error(error);
-        res.send(error);
-      }
-    },
+      })
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
 
 
 

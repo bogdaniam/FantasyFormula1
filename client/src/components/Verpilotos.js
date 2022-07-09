@@ -7,6 +7,7 @@ function Verpilotos() {
 
   const [pilotos, setPilotos] = useState("");
   const [message, setMessage] = useState("");
+  const [message2, setMessage2] = useState("");
   //console.log(pilotos)
 
 
@@ -116,7 +117,7 @@ function Verpilotos() {
     };
     fetch("verPilotos", requestOptions)
       .then((res) => res.json())
-      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje) })
+      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2) })
 
 
     //para ver todos los pilotos
@@ -125,7 +126,9 @@ function Verpilotos() {
     //   .then(res => { console.log(res); setPilotos(res) })
 
   }, [])
-  console.log(message)
+
+  console.log(typeof message2)
+
   return (
     <div className="flex" class="divpilotos">
       <p className="cargando"> Pilotos Activos</p>
@@ -146,20 +149,37 @@ function Verpilotos() {
           )
         }) : <p className="cargando"> Cargando Pilotos . . . </p>}
 
-          {pilotos[1] ? pilotos[1].map((piloto, i) => {
-          return (
-            <Card style={{ width: '18rem' }} key={i}>
-              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+{message2 ? 
+  
+  pilotos[1] ? pilotos[1].map((piloto, i) => {
+    return (
+      <Card style={{ width: '18rem' }} key={i}>
+        <Card.Img variant="top" src={`./img/${piloto.foto}`} />
 
-              <Card.Body>
-                <Card.Title>{piloto.nombre}</Card.Title>
-                <Card.Text>{piloto.apellido}</Card.Text>
-                <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
-                <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary">Activar</Button>
-              </Card.Body>
-            </Card>
-          )
-        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+        <Card.Body>
+          <Card.Title>{piloto.nombre}</Card.Title>
+          <Card.Text>{piloto.apellido}</Card.Text>
+          <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
+          <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary">Activar</Button>
+        </Card.Body>
+      </Card>
+    )
+  }) : <p className="cargando"> Cargando Pilotos . . . </p>
+
+    : pilotos[1] ? pilotos[1].map((piloto, i) => {
+        return (
+          <Card style={{ width: '18rem' }} key={i}>
+            <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+
+            <Card.Body>
+              <Card.Title>{piloto.nombre}</Card.Title>
+              <Card.Text>{piloto.apellido}</Card.Text>
+              <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
+              <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary" disabled>Activar</Button>
+            </Card.Body>
+          </Card>
+        )
+      }) : <p className="cargando"> Cargando Pilotos . . . </p>}
 
       </div>
 
