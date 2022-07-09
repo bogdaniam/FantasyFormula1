@@ -27,19 +27,21 @@ const pilotos = {
       const usuario = await Usuario.findOne({
         where: { id_usuario: fkuserid },
       });
-      console.log(usuario)
+      console.log(usuario.presupuesto)
       //const usuarioPiloto = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid }});
       //const pilotos = await Pilotos.findAll({ where: { id_piloto: usuarioPiloto.fk_piloto }});
       //console.log(usuarioPiloto)
       //const piloto = await Pilotos.findAll({});
 
-      //se busca todos los pilotos que tiene el usuario logeado
+      //se busca todos los pilotos que tiene el usuario logeado activados
       const usuarioPilotoA = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid, estado: true } });
+      //se busca todos los pilotos que tiene el usuario logeado desactivados
       const usuarioPilotoR = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid, estado: false } });
-      //console.log(usuarioPilotoR)
+      
       let pilotosActivos = [];
       let pilotosReservas = [];
-      let pilotosRestantes = [];
+      let pilotosRestantesMenos = [];
+      let pilotosRestantesMayor = [];
       let pilotosTodos = [];
       let arrayPilotos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
       //let pilotosComprados = []; pendiente de eliminar
@@ -57,7 +59,7 @@ const pilotos = {
           userid: fkuserid
         }
 
-        //para eliminar los pilotos que tiene el usuario, de todos los pilotos (se utilizar para pintar los pilotos que no tiene)
+        //para eliminar los pilotos activados que tiene el usuario, de todos los pilotos (se utilizar para pintar los pilotos que no tiene)
         const index = arrayPilotos.indexOf(piloto[i][0].id_piloto);
         if (index > -1) { arrayPilotos.splice(index, 1); }
         pilotosActivos.push(data)
@@ -84,7 +86,7 @@ const pilotos = {
           userid: fkuserid
         }
 
-        //para eliminar los pilotos que tiene el usuario, de todos los pilotos (se utilizar para pintar los pilotos que no tiene)
+        //para eliminar los pilotos desactivados que tiene el usuario, de todos los pilotos (se utilizar para pintar los pilotos que no tiene)
         const index = arrayPilotos.indexOf(piloto[i][0].id_piloto);
         if (index > -1) { arrayPilotos.splice(index, 1); }
         pilotosReservas.push(data1)
@@ -93,11 +95,13 @@ const pilotos = {
 
 
 
-
+      //para buscar los pilotos que no tiene el usuario
       for (let i = 0; i < arrayPilotos.length; i++) {
         piloto[i] = await Pilotos.findAll({ where: { id_piloto: arrayPilotos[i] } });
-        //console.log(piloto[i])
+        //console.log(piloto[i][0].precio)
         //console.log(usuarioPiloto)
+        if (piloto[i][0].precio <= usuario.presupuesto){
+
         let data2 = {
           nombre: piloto[i][0].nombre,
           apellido: piloto[i][0].apellido,
@@ -108,15 +112,32 @@ const pilotos = {
         }
 
 
-        pilotosRestantes.push(data2)
+        pilotosRestantesMenos.push(data2)
         //pilotosComprados.push(piloto[i][0].id_piloto)
-      }
-      pilotosTodos.push(pilotosRestantes)
+      } else {
+        let data4 = {
+          nombre: piloto[i][0].nombre,
+          apellido: piloto[i][0].apellido,
+          foto: piloto[i][0].foto,
+          id_piloto: piloto[i][0].id_piloto,
+          precio: piloto[i][0].precio,
+          userid: fkuserid
+        }
+        pilotosRestantesMayor.push(data4)
 
-      //console.log(pilotosRestantes.length)
-      console.log(pilotoActivar)
+      }
+      }
+
+      pilotosTodos.push(pilotosRestantesMenos)
+      pilotosTodos.push(pilotosRestantesMayor)
+      console.log(pilotosTodos)
+
+
+      
+      //para dar o quitar premiso al usuario a la hora de comprar pilotos...maximo 5 pilotos
+      let pilotosRestantes = pilotosRestantesMenos.length + pilotosRestantesMayor.length
       let data3 = {}
-      if (pilotosRestantes.length > 15) {
+      if (pilotosRestantes > 15) {
         res.json(
           {
             mensaje: true,
@@ -169,14 +190,29 @@ const pilotos = {
       //console.log(pilotosUsuarios)
 
       if (totalPilotosUsuarios.length < 5) {
+        const usuarioActual = await Usuario.findOne({
+          where: { id_usuario: user },
+        });
+        const piloto = await Pilotos.findOne({
+          where: { id_piloto: id },
+        });
+        //console.log(usuario.presupuesto)
+        //console.log(piloto.precio)
+        const nuevoPresupuesto1 = usuarioActual.presupuesto - piloto.precio;
+        //console.log(nuevoPresupuesto1)
+  
+  
+        const nuevoPresupuesto = await Usuario.update({presupuesto: nuevoPresupuesto1},{
+          where: { id_usuario: user },
+        });
         const usuario = await UsuariosPilotos.create({
           fk_usuario: user,
           fk_piloto: id,
           estado: false,
         });
 
-        console.log(totalPilotosUsuarios.length);
-        console.log(pilotosActivos.length);
+        //console.log(totalPilotosUsuarios.length);
+        //console.log(pilotosActivos.length);
 
         res.json({
           message: true

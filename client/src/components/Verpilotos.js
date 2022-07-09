@@ -224,6 +224,24 @@ function Verpilotos() {
           )
         }) : <p className="cargando"> Cargando Pilotos . . . </p>}
 
+ 
+  
+  {pilotos[3] ? pilotos[3].map((piloto, i) => {
+      return (
+        <Card style={{ width: '18rem' }} key={i}>
+          <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+
+          <Card.Body>
+            <Card.Title>{piloto.nombre}</Card.Title>
+            <Card.Text>{piloto.apellido}</Card.Text>
+            <Card.Text>{piloto.precio} €</Card.Text>
+            <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} variant="danger" disabled>Comprar</Button>
+          </Card.Body>
+        </Card>
+      )
+    }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+
+
 
       </div>
     </div>
