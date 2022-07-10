@@ -104,9 +104,9 @@ const usuarios = {
         res.json({
           message: true,
           id: usuario.id_usuario, 
-          nombre: usuario.nombre,
-          apellido: usuario.apellido,
-          rol: usuario.rol  
+          //nombre: usuario.nombre,
+          //apellido: usuario.apellido,
+          //rol: usuario.rol  
       })
 
         //console.log(usuario)

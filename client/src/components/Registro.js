@@ -30,7 +30,10 @@ const Registro = () => {
     console.log(respuesta)
     fetch("registro", requestOptions)
       .then((response) => response.json())
-      .then((res) => setMessage(res.message));
+      .then((res) => {
+        setMessage(res.message); window.location.assign("/login");
+      });
+      
   };
 
 
@@ -38,10 +41,10 @@ const Registro = () => {
   return (
     <div className="flex">
       <h1>{message ? message : "Registro"}</h1>
-      <label for="nombreRegistro">Introduce tu email</label>
+      <label for="nombreRegistro">Introduce tu nombre</label>
       <input id="nombreRegistro" type="text" onChange={(e) => setNombre(e.target.value)} />
 
-      <label for="apellidoRegistro">Introduce tu email</label>
+      <label for="apellidoRegistro">Introduce tu apellido</label>
       <input id="apellidoRegistro" type="text" onChange={(e) => setApellido(e.target.value)} />
 
       <label for="emailRegistro">Introduce tu email</label>

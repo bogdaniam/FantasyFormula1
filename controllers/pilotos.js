@@ -143,7 +143,7 @@ const pilotos = {
             mensaje: true,
             mensaje2: pilotoActivar,
             pilotosTodos,
-            presupuesto: usuario.presupuesto
+            usuarioData: usuario
 
           }
         )

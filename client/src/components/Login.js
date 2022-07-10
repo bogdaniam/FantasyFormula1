@@ -33,9 +33,9 @@ const Login = () => {
                     if (res.message === true) {
                         localStorage.setItem('user', JSON.stringify({
                             logId: res.id,
-                            logNombre: res.nombre,
-                            logApellido: res.apellido,
-                            rol: res.rol,
+                            //logNombre: res.nombre,
+                            //logApellido: res.apellido,
+                            //rol: res.rol,
                             
                         }));
                         window.location.assign("/verpilotos");

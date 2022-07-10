@@ -8,7 +8,7 @@ function Verpilotos() {
   const [pilotos, setPilotos] = useState("");
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
-  const [presupuesto, setPresupuesto] = useState("");
+  const [usuariodata, setUsuariodata] = useState("");
   //console.log(pilotos)
 
 
@@ -118,7 +118,7 @@ function Verpilotos() {
     };
     fetch("verPilotos", requestOptions)
       .then((res) => res.json())
-      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setPresupuesto(res.presupuesto) })
+      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setUsuariodata(res.usuarioData) })
 
 
     //para ver todos los pilotos
@@ -132,7 +132,7 @@ function Verpilotos() {
 
   return (
     <div className="flex" class="divpilotos">
-      <p className="cargando"> {presupuesto} €</p>
+      <p className="cargando"> {usuariodata.presupuesto} €</p>
       <p className="cargando"> Pilotos Activos</p>
 
       <div class="pilotosusuario">
