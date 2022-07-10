@@ -5,7 +5,8 @@ const Usuario = require('../models/Usuario');
 
 const pilotos = {
 
-  infopiloto: async (req, res) => {//cuando se pincha en un piloto, se le pasa el id del piloto como parametro, se va a buscar en la base de datos para encontrar el id de mongo, luego se va a buscar los datos de ese piloto
+  //cuando se selectiona en un piloto, se le pasa el id del piloto como parametro, se va a buscar en la base de datos para encontrar el id de mongo, luego se va a buscar los datos de ese piloto
+  infopiloto: async (req, res) => {
     try {
       //el id del piloto que esta detras de cada foto
       const { idpiloto } = req.body.respuesta;
