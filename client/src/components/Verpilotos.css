@@ -19,12 +19,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  z-index: 1;
 }
 
-/* .desactivado{
-  background-color: grey;
+.contenedorinfopiloto{
+  display: none;
+  z-index: 100;
+  position: absolute;
+  top: 252px;
+  background-color: rgb(178, 172, 172);
+  border-radius: 20px;
 }
-
-.activado {
-  background-color: yellow;
-} */

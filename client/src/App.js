@@ -27,6 +27,7 @@ import { BrowserRouter ,Link } from "react-router-dom";
 import MainComponent from "./components/Main";
 import Navbar from "./components/Navbar";
 import "./App.css"
+import "./components/Verpilotos.css"
 
 class App extends Component {
 

@@ -15,7 +15,7 @@ router.post('/login', urlencodedParser, login);
 //router.get('/verPilotos', urlencodedParser, verPilotos); 
 router.post('/verPilotos', urlencodedParser, verPilotos); 
 router.get('/ranKing', verRanking);
-router.get('/infopilotos', infopiloto);
+router.post('/infopilotos', infopiloto);
 router.post('/comprar', comprar);
 router.post('/vender', vender);
 router.post('/activar', activar);

@@ -9,10 +9,8 @@ function Verpilotos() {
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
   const [usuariodata, setUsuariodata] = useState("");
+  const [info, setInfo] = useState("");
   //console.log(pilotos)
-
-
-
   // const requestOptions = {
   //   method: 'GET',
   //   headers: { 'Content-Type': 'application/json' },
@@ -80,10 +78,6 @@ function Verpilotos() {
 
 
   const comprar = (user, id) => {
-    //console.log(`Usuario ${user}`)
-    //console.log(`id ${id}`)
-    //console.log("comprado")
-
     let respuesta = { user: user, id: id }
     console.log(respuesta)
     const requestOptions = {
@@ -95,16 +89,40 @@ function Verpilotos() {
       .then((res) => res.json())
       .then((res) => {
         setInterval(() => {
-
           window.location.assign("/verpilotos");
-
         }
           , 300);
       });
   }
 
+  const verinfo = (id) => {
+    let test = document.querySelector(".contenedorinfopiloto")
+    if (test.style.display == 'block') {
+      test.style.display = 'none';
+  } else {
+      test.style.display = 'block'
+  }
 
+    let respuesta = {idpiloto: id }
+    //console.log(respuesta)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ respuesta }),
+    };
+    fetch("infopilotos", requestOptions)
+      .then((res) => res.json())
+      .then((res) => {console.log(res); setInfo(res)});
+  }
 
+  const ocultar = () => {
+    let test = document.querySelector(".contenedorinfopiloto")
+    if (test.style.display == 'inline') {
+        test.style.display = 'block';
+    } else {
+        test.style.display = 'none'
+    }
+  }
 
   useEffect(() => {
 
@@ -135,8 +153,18 @@ function Verpilotos() {
       <p className="cargando"> {usuariodata.presupuesto} €</p>
       <p className="cargando"> Pilotos Activos</p>
 
-      <div class="pilotosusuario">
+      <div class="contenedorinfopiloto">
+        <h1 class="ocultar" onClick={() => ocultar()}>X</h1>
+        <h1>{info.nombre} {info.apellido}</h1>
+        <h1>{info.fechanacimiento}</h1>
+        <h1>{info.lugarnacimiento}</h1>
+        <h1>{info.equipoactual}</h1>
+        <p>{info.infopiloto}</p>
+      </div>
 
+
+      <div class="pilotosusuario">
+      
         {pilotos[0] ? pilotos[0].map((piloto, i) => {
           return (
             <Card style={{ width: '18rem' }} key={i}>
@@ -148,6 +176,7 @@ function Verpilotos() {
                 <Card.Text>{piloto.precio} €</Card.Text>
                 <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
                 <Button onClick={() => desactivar(piloto.userid, piloto.id_piloto)} variant="success">Desactivar</Button>
+                <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
               </Card.Body>
             </Card>
           )
@@ -166,6 +195,7 @@ function Verpilotos() {
           <Card.Text>{piloto.precio} €</Card.Text>
           <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
           <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary">Activar</Button>
+          <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
         </Card.Body>
       </Card>
     )
@@ -182,6 +212,7 @@ function Verpilotos() {
               <Card.Text>{piloto.precio} €</Card.Text>
               <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
               <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary" disabled>Activar</Button>
+              <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
             </Card.Body>
           </Card>
         )
@@ -204,6 +235,7 @@ function Verpilotos() {
                 <Card.Text>{piloto.apellido}</Card.Text>
                 <Card.Text>{piloto.precio} €</Card.Text>
                 <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)}>Comprar</Button>
+                <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
               </Card.Body>
             </Card>
           )
@@ -219,6 +251,7 @@ function Verpilotos() {
                 <Card.Text>{piloto.apellido}</Card.Text>
                 <Card.Text>{piloto.precio} €</Card.Text>
                 <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} disabled>Comprar</Button>
+                <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
               </Card.Body>
             </Card>
           )
@@ -236,6 +269,7 @@ function Verpilotos() {
             <Card.Text>{piloto.apellido}</Card.Text>
             <Card.Text>{piloto.precio} €</Card.Text>
             <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} variant="danger" disabled>Comprar</Button>
+            <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
           </Card.Body>
         </Card>
       )
