@@ -72,7 +72,7 @@ function Verpilotos() {
     fetch("desactivar", requestOptions)
       .then((res) => res.json())
       .then((res) => {
-        setInterval(() => { window.location.assign("/verpilotos"); }, 300);
+        setInterval(() => { window.location.assign("/verpilotos"); }, 1000);
       });
   }
 
@@ -160,7 +160,7 @@ function Verpilotos() {
       <p className="cargando"> Pilotos Activos</p>
 
       <div class="contenedorinfopiloto">
-        <p class="ocultar" onClick={() => ocultar()}>X</p>
+        <p class="ocultar" onClick={() => ocultar()}><b>X</b></p>
         
         <h1>Nombre y Apellido: {info.nombre} {info.apellido}</h1>
         <h3>Fecha nacimiento: {info.fechanacimiento}</h3>

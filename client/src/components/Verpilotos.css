@@ -36,7 +36,8 @@
 .ocultar{
   display: flex;
   justify-content: flex-end;
-  padding: 3px;;
+  padding: 3px;
+  color: red;
 }
 
 .ocultar:hover{
