@@ -6,8 +6,8 @@ const pilotos = require('../controllers/pilotos');
 
 const router = express.Router();
 
-const { registro, login, verRanking} = usuarios;
-const { infopiloto, verPilotos, comprar, vender, activar, desactivar} = pilotos;
+const { registro, login, verRanking, perfil, cambiarNombre, cambiarApellido, cambiarContrasena, cambiarEmail, administrarUsuarios, deleteUser} = usuarios;
+const { infopiloto, verPilotos, comprar, vender, activar, desactivar, actualizar} = pilotos;
 
 //router.get('/registro', registro);
 router.post('/registro', urlencodedParser, registro);
@@ -20,6 +20,13 @@ router.post('/comprar', comprar);
 router.post('/vender', vender);
 router.post('/activar', activar);
 router.post('/desactivar', desactivar);
-
+router.post('/perfil', perfil);
+router.post('/cambiarNombre', cambiarNombre);
+router.post('/cambiarApellido', cambiarApellido);
+router.post('/cambiarContrasena', cambiarContrasena);
+router.post('/cambiarEmail', cambiarEmail);
+router.get('/administrarUsuarios', administrarUsuarios);
+router.post('/deleteUser', deleteUser);
+router.post('/actualizar', actualizar);
 
 module.exports = router;

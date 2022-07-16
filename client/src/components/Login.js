@@ -3,7 +3,7 @@ import "../components/Login.css";
 
 
 
-const Login = () => {
+const Login = (props) => {
 
   const [message, setMessage] = useState("");
   const [user, setUser] = useState("");

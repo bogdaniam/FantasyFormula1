@@ -51,7 +51,7 @@ const Registro = () => {
       <input id="emailRegistro" type="text" onChange={(e) => setUser(e.target.value)} />
 
       <label for="contrasenaRegistro">Introduce tu contrasena</label>
-      <input id="contrasenaRegistro" type="text" onChange={(e) => setContrasena(e.target.value)} />
+      <input id="contrasenaRegistro" type="password" onChange={(e) => setContrasena(e.target.value)} />
       <br/>
       <button onClick={() => sendData()}>Registro</button>
 

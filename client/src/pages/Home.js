@@ -1,16 +1,16 @@
 import React , {Component} from "react"
-import Login from '../components/Login';
 import Navbar from "../components/Navbar"; 
+import Home  from "../components/Home"; 
 
-class Logear extends Component{
+class LandingPage extends Component{
 
     render() {
         return (
             <div>
                 <Navbar />
-                <Login/>
+                <Home />
             </div>
             );
     }
 }
-export default Logear
+export default LandingPage

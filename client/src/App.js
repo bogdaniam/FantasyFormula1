@@ -37,7 +37,7 @@ render() {
         <BrowserRouter>
             <div class="mainapp">
                 <div class="navb">
-                <Navbar />
+                
                
                 </div>
                 <div><MainComponent /></div>

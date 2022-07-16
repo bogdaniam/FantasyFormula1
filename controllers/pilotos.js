@@ -2,6 +2,8 @@ const infopiloto = require('../models/Infopiloto');
 const Pilotos = require('../models/Piloto');
 const UsuariosPilotos = require('../models/UsuariosPilotos');
 const Usuario = require('../models/Usuario');
+const Resultado = require('../models/Resultado');
+
 
 const pilotos = {
 
@@ -12,7 +14,7 @@ const pilotos = {
       const { idpiloto } = req.body.respuesta;
 
       //se va a buscar en la tabla pilotos, el piloto en el cual hemos pinchado
-      const piloto = await Pilotos.findOne({  
+      const piloto = await Pilotos.findOne({
         where: { id_piloto: idpiloto },
       });
       //console.log(piloto.foto)
@@ -46,7 +48,7 @@ const pilotos = {
       const usuarioPilotoA = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid, estado: true } });
       //se busca todos los pilotos que tiene el usuario logeado desactivados
       const usuarioPilotoR = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid, estado: false } });
-      
+
       let pilotosActivos = [];
       let pilotosReservas = [];
       let pilotosRestantesMenos = [];
@@ -109,32 +111,32 @@ const pilotos = {
         piloto[i] = await Pilotos.findAll({ where: { id_piloto: arrayPilotos[i] } });
         //console.log(piloto[i][0].precio)
         //console.log(usuarioPiloto)
-        if (piloto[i][0].precio <= usuario.presupuesto){
+        if (piloto[i][0].precio <= usuario.presupuesto) {
 
-        let data2 = {
-          nombre: piloto[i][0].nombre,
-          apellido: piloto[i][0].apellido,
-          foto: piloto[i][0].foto,
-          id_piloto: piloto[i][0].id_piloto,
-          precio: piloto[i][0].precio,
-          userid: fkuserid
+          let data2 = {
+            nombre: piloto[i][0].nombre,
+            apellido: piloto[i][0].apellido,
+            foto: piloto[i][0].foto,
+            id_piloto: piloto[i][0].id_piloto,
+            precio: piloto[i][0].precio,
+            userid: fkuserid
+          }
+
+
+          pilotosRestantesMenos.push(data2)
+          //pilotosComprados.push(piloto[i][0].id_piloto)
+        } else {
+          let data4 = {
+            nombre: piloto[i][0].nombre,
+            apellido: piloto[i][0].apellido,
+            foto: piloto[i][0].foto,
+            id_piloto: piloto[i][0].id_piloto,
+            precio: piloto[i][0].precio,
+            userid: fkuserid
+          }
+          pilotosRestantesMayor.push(data4)
+
         }
-
-
-        pilotosRestantesMenos.push(data2)
-        //pilotosComprados.push(piloto[i][0].id_piloto)
-      } else {
-        let data4 = {
-          nombre: piloto[i][0].nombre,
-          apellido: piloto[i][0].apellido,
-          foto: piloto[i][0].foto,
-          id_piloto: piloto[i][0].id_piloto,
-          precio: piloto[i][0].precio,
-          userid: fkuserid
-        }
-        pilotosRestantesMayor.push(data4)
-
-      }
       }
 
       pilotosTodos.push(pilotosRestantesMenos)
@@ -142,7 +144,7 @@ const pilotos = {
       console.log(pilotosTodos)
 
 
-      
+
       //para dar o quitar premiso al usuario a la hora de comprar pilotos...maximo 5 pilotos
       let pilotosRestantes = pilotosRestantesMenos.length + pilotosRestantesMayor.length
       let data3 = {}
@@ -209,9 +211,9 @@ const pilotos = {
         //console.log(piloto.precio)
         const nuevoPresupuesto1 = usuarioActual.presupuesto - piloto.precio;
         //console.log(nuevoPresupuesto1)
-  
-  
-        const nuevoPresupuesto = await Usuario.update({presupuesto: nuevoPresupuesto1},{
+
+
+        const nuevoPresupuesto = await Usuario.update({ presupuesto: nuevoPresupuesto1 }, {
           where: { id_usuario: user },
         });
         const usuario = await UsuariosPilotos.create({
@@ -254,10 +256,10 @@ const pilotos = {
       //console.log(nuevoPresupuesto1)
 
 
-      const nuevoPresupuesto = await Usuario.update({presupuesto: nuevoPresupuesto1},{
+      const nuevoPresupuesto = await Usuario.update({ presupuesto: nuevoPresupuesto1 }, {
         where: { id_usuario: user },
       });
-      
+
 
 
 
@@ -311,6 +313,84 @@ const pilotos = {
       //console.log(usuario);
       res.json({
         message: true
+
+      })
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+  actualizar: async (req, res) => {
+    try {
+      //const prueba = await Resultado.findAll({      });
+
+      const resultados = await req.body.resultados
+      //console.log(resultados.date)
+      let fecha = await resultados.date;
+      //console.log(resultados.Results[0].position)
+      let length = await resultados.Results
+      //console.log(length.length)
+      for (let i = 0; i < length.length; i++) {
+        let numeroPiloto = await resultados.Results[i].number
+        const piloto = await Pilotos.findOne({
+          where: { numero: numeroPiloto },
+        });
+        const resultadoComprobar = await Resultado.findOne({
+          where: { fk_piloto: piloto.id_piloto, fecha: fecha },
+        });
+        if (resultadoComprobar == null) {
+
+              let positionPiloto = resultados.Results[i].position
+              // let numeroPiloto = resultados.Results[i].number
+              // //console.log(resultados.Results[i].number)
+              // //console.log(resultados.Results[i].position)
+              // // const piloto = await Pilotos.findOne({
+              // //   where: { numero: numeroPiloto },
+              // // });
+              const resultado = await Resultado.create({
+                 fecha: fecha,
+                 fk_piloto: piloto.id_piloto,
+                 fk_puntuacion: positionPiloto,
+               });
+
+
+          console.log("el resultado no existe")
+
+
+        } else {
+
+
+
+
+
+          console.log("el resultado ya ha sido insertado")
+        }
+        
+
+
+
+              // let positionPiloto = resultados.Results[i].position
+              // let numeroPiloto = resultados.Results[i].number
+              // //console.log(resultados.Results[i].number)
+              // //console.log(resultados.Results[i].position)
+              // // const piloto = await Pilotos.findOne({
+              // //   where: { numero: numeroPiloto },
+              // // });
+              // const resultado = await Resultado.create({
+              //   fecha: fecha,
+              //   fk_piloto: piloto.id_piloto,
+              //   fk_puntuacion: positionPiloto,
+              // });
+
+        //console.log(piloto)
+      }
+
+
+
+      //console.log(piloto);
+      res.json({
+        //resultados
 
       })
     } catch (error) {

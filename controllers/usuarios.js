@@ -187,7 +187,185 @@ const usuarios = {
     }
   },
 
+  perfil: async (req, res) => {
+    try {
+
+      let fkuserid = req.body.respuesta.logId;
+      const usuario = await Usuario.findOne({
+        where: { id_usuario: fkuserid },
+      });
+      console.log(usuario)
+    res.json({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      email: usuario.email
+    })
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+cambiarNombre: async (req, res) => {
+    try {
+
+      let fkuserid = req.body.respuesta.logId;
+
+       const cambioNombre = await Usuario.update({ nombre: req.body.respuesta.nombre }, {
+        where: { id_usuario: fkuserid },
+      });
+      const usuario = await Usuario.findOne({
+        where: { id_usuario: fkuserid },
+      });
+
+      //console.log(usuario)
+    res.json({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      email: usuario.email
+    })
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+
+  cambiarApellido: async (req, res) => {
+    try {
+
+      let fkuserid = req.body.respuesta.logId;
+
+       const cambioApellido = await Usuario.update({ apellido: req.body.respuesta.apellido }, {
+        where: { id_usuario: fkuserid },
+      });
+      const usuario = await Usuario.findOne({
+        where: { id_usuario: fkuserid },
+      });
+
+      //console.log(usuario)
+    res.json({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      email: usuario.email
+    })
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+
+  cambiarContrasena: async (req, res) => {
+    try {
+
+      let fkuserid = req.body.respuesta.logId;
+      const passwordHash = await encrypt(req.body.respuesta.contrasena);
+      const cambioApellido = await Usuario.update({ contrasena: passwordHash }, {
+        where: { id_usuario: fkuserid },
+      });
+      const usuario = await Usuario.findOne({
+        where: { id_usuario: fkuserid },
+      });
+
+      //console.log(usuario)
+    res.json({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      email: usuario.email
+    })
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+  cambiarEmail: async (req, res) => {
+    try {
+
+      let fkuserid = req.body.respuesta.logId;
+      
+      const cambioEmail = await Usuario.update({ email: req.body.respuesta.email }, {
+        where: { id_usuario: fkuserid },
+      });
+      const usuario = await Usuario.findOne({
+        where: { id_usuario: fkuserid },
+      });
+
+      //console.log(usuario)
+    res.json({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      email: usuario.email
+    })
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
+
+  administrarUsuarios: async (req, res) => {
+    try {
+
+      
+      
+      
+      const usuarios = await Usuario.findAll({
+        //where: { id_usuario: fkuserid },
+      });
+   
+
+      //console.log(usuario)
+    res.json({usuarios
+      
+    })
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
   
+
+  deleteUser: async (req, res) => {
+    try {
+
+      
+     const usuario = req.body.respuesta.id
+
+     const usuariofk = await Usuario.findOne({
+      where: { id_usuario: usuario},
+    });
+      const usuarios = await Usuario.destroy({
+        where: { id_usuario: usuario},
+      });
+
+      const ranking = await Ranking.destroy({
+        where: { id_ranking: usuariofk.fk_ranking},
+      });
+      
+
+
+    const usuariosN = await Usuario.findAll({
+      //where: { id_usuario: fkuserid },
+    });
+ 
+
+    //console.log(usuario)
+  res.json({usuariosN
+    
+  })
+
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  },
 
 
 };

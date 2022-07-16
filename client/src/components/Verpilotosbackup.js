@@ -25,16 +25,6 @@ function Verpilotos(props) {
   //   .then((response) => response.json())
   //   .then((res) => setMessage(res.message));
 
-  
-
-  // function botonvender () {
-  //   return <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>;
-  // }
-
-
- 
-
-
   const vender = (user, id) => {
     console.log("vendido")
     console.log(`Usuario ${user}`)
@@ -53,7 +43,6 @@ function Verpilotos(props) {
         setInterval(() => { window.location.assign("/verpilotos"); }, 300);
       });
   }
-
 
   const activar = (user, id) => {
     console.log("Piloto activado")
@@ -149,14 +138,14 @@ function Verpilotos(props) {
     };
     fetch("verPilotos", requestOptions)
       .then((res) => res.json())
-      .then(res => { console.log(res.mensaje2); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setUsuariodata(res.usuarioData) })
+      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setUsuariodata(res.usuarioData) })
 
 
     //para ver todos los pilotos
     // fetch("verPilotos")
     //   .then((res) => res.json())
     //   .then(res => { console.log(res); setPilotos(res) })
-    //console.log(pilotos)
+    console.log(pilotos)
   }, [])
 
   //console.log(user)
@@ -183,10 +172,27 @@ function Verpilotos(props) {
         <p>{info.infopiloto}</p>
       </div>
 
-      
+      <PilotosUsuarios />
       <div class="pilotosusuario">
-      <PilotosUsuarios pilotoA={pilotos[0]} />
-        
+
+        {pilotos[0] ? pilotos[0].map((piloto, i) => {
+          return (
+            <Card style={{ width: '18rem' }} key={i}>
+              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+
+              <Card.Body>
+                <Card.Title>{piloto.nombre}</Card.Title>
+                <Card.Text>{piloto.apellido}</Card.Text>
+                <Card.Text>{piloto.precio} €</Card.Text>
+                <div class="divbotones">
+                  <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
+                  <Button onClick={() => desactivar(piloto.userid, piloto.id_piloto)} variant="success">Desactivar</Button>
+                  <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
+                </div>
+              </Card.Body>
+            </Card>
+          )
+        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
 
         {message2 ?
 

@@ -3,7 +3,7 @@ import './Ranking.css';
 import { Card } from 'react-bootstrap'
 
 
-function Ranking() {
+function Ranking(props) {
 
     const [ranking, setRanking] = useState("");
     useEffect(() => {

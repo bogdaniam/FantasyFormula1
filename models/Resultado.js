@@ -1,36 +1,25 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../databases/mysql');
 
-const Piloto = sequelize.define('pilotos', {
-    id_piloto: {
+const Resultado = sequelize.define('resultados', {
+    id_resultado: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  nombre: {
+  fecha: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  apellido: {
+  fk_piloto: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
-  precio: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  id_mongo: {
+  }, 
+  fk_puntuacion: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
-  foto: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  numero: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
+  }, 
+  
 });
-module.exports = Piloto;
+module.exports = Resultado;
