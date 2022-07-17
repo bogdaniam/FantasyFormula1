@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../components/Login.css";
+import { Form, Button } from 'react-bootstrap';
 
 const Registro = () => {
   const [message, setMessage] = useState("");
@@ -17,17 +18,17 @@ const Registro = () => {
 
 
   const sendData = () => {
-    console.log(nombre)
-    console.log(apellido)
-    console.log(user)
-    console.log(contrasena)
+    //console.log(nombre)
+    //console.log(apellido)
+    //console.log(user)
+    //console.log(contrasena)
     let respuesta = {name: nombre, lastname: apellido, email: user, password: contrasena}
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ respuesta }),
     };
-    console.log(respuesta)
+    //console.log(respuesta)
     fetch("registro", requestOptions)
       .then((response) => response.json())
       .then((res) => {
@@ -40,21 +41,23 @@ const Registro = () => {
 
   return (
     <div className="flex">
-      <h1>{message ? message : "Registro"}</h1>
-      <label for="nombreRegistro">Introduce tu nombre</label>
-      <input id="nombreRegistro" type="text" onChange={(e) => setNombre(e.target.value)} />
+      <h1 class="aviso">{message ? message : "Registro"}</h1>
 
-      <label for="apellidoRegistro">Introduce tu apellido</label>
-      <input id="apellidoRegistro" type="text" onChange={(e) => setApellido(e.target.value)} />
+      <div class="recuperarcontrasena">
+      <Form.Label for="nombreRegistro">Introduce tu nombre</Form.Label>
+      <Form.Control id="nombreRegistro" type="text" onChange={(e) => setNombre(e.target.value)} />
 
-      <label for="emailRegistro">Introduce tu email</label>
-      <input id="emailRegistro" type="text" onChange={(e) => setUser(e.target.value)} />
+      <Form.Label for="apellidoRegistro">Introduce tu apellido</Form.Label>
+      <Form.Control id="apellidoRegistro" type="text" onChange={(e) => setApellido(e.target.value)} />
 
-      <label for="contrasenaRegistro">Introduce tu contrasena</label>
-      <input id="contrasenaRegistro" type="password" onChange={(e) => setContrasena(e.target.value)} />
+      <Form.Label for="emailRegistro">Introduce tu email</Form.Label>
+      <Form.Control id="emailRegistro" type="text" onChange={(e) => setUser(e.target.value)} />
+
+      <Form.Label for="contrasenaRegistro">Introduce tu contrasena</Form.Label>
+      <Form.Control id="contrasenaRegistro" type="password" onChange={(e) => setContrasena(e.target.value)} />
       <br/>
-      <button onClick={() => sendData()}>Registro</button>
-
+      <Button onClick={() => sendData()}>Registro</Button>
+      </div>
 
     </div>
   );

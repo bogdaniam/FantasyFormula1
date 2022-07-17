@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Ranking.css';
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Form } from 'react-bootstrap'
 
 
 function Admin(props) {
@@ -34,7 +34,7 @@ function Admin(props) {
     const actualizarResultados = () => {
         fetch(`https://ergast.com/api/f1/current/last/results.json`)
             .then(res => res.json())
-            .then(json => {setResultados(json.MRData.RaceTable.Races[0]);console.log(json.MRData.RaceTable.Races[0])})
+            .then(json => { setResultados(json.MRData.RaceTable.Races[0]); console.log(json.MRData.RaceTable.Races[0]) })
 
 
         const requestOptions = {
@@ -44,10 +44,11 @@ function Admin(props) {
         };
 
         fetch("actualizar", requestOptions)
-        .then((res) => res.json())
-        .then((res) => {console.log(res.resultados)
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res.resultados)
 
-        });
+            });
     }
 
 
@@ -64,32 +65,55 @@ function Admin(props) {
 
 
 
-return (
-    <div className="flex" class="ranking">
-        <Button onClick={() => actualizarResultados()} >Actualizar</Button>
-        {usuarios ? usuarios.map((user, i) => {
-            return (
-                <Card style={{ width: '90%' }} key={i} >
+    return (
+        <div className="flex" class="admin">
+            <div class="actualizar">
+                {/* <Form.Label>Actualizar la base de datos</Form.Label> */}
+                <Button onClick={() => actualizarResultados()} >Actualizar Base de datos</Button>
+            </div>
 
-                    <Card.Body>
-                        <Card.Title>{i + 1}. {user.nombre} {user.apellido} </Card.Title>
+            <div class="usuarios">
 
-                        <Card.Title>  {user.email} </Card.Title>
+                <div class="usuario">
+               
+                
+                    <Card style={{ width: '90%' }}  >
 
-                        <Button onClick={() => deleteUser(user.id_usuario)} >Borrar</Button>
-                    </Card.Body>
-                </Card>
-            )
-        }) : <p className="cargando"> Cargando Usuarios . . . </p>}
+                        <Card.Body class="usuario">
+                            <Card.Title style={{ width: '40%' }}>Nombre y Apellido </Card.Title>
+
+                            <Card.Title style={{ width: '40%' }}>  Email </Card.Title>
+                            <h1 style={{ width: '10%' }} ></h1>
+
+                        </Card.Body>
+                    </Card>
+                </div>
+
+                {usuarios ? usuarios.map((user, i) => {
+                    return (
+                        <div class="usuario">
+                            <Card style={{ width: '90%' }} key={i} >
+
+                                <Card.Body class="usuario">
+                                    <Card.Title style={{ width: '40%' }}>{i + 1}. {user.nombre} {user.apellido} </Card.Title>
+
+                                    <Card.Title style={{ width: '40%' }}>  {user.email} </Card.Title>
+
+                                    <Button style={{ width: '10%' }} onClick={() => deleteUser(user.id_usuario)} >Borrar</Button>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    )
+                }) : ""}
+
+            </div>
 
 
 
 
 
-
-
-    </div>
-);
+        </div>
+    );
 }
 
 export default Admin;

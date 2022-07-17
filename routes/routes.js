@@ -3,11 +3,14 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const usuarios = require('../controllers/usuarios');
 const pilotos = require('../controllers/pilotos');
+const passRecovery = require('../controllers/passRecovery');
+
 
 const router = express.Router();
 
 const { registro, login, verRanking, perfil, cambiarNombre, cambiarApellido, cambiarContrasena, cambiarEmail, administrarUsuarios, deleteUser} = usuarios;
 const { infopiloto, verPilotos, comprar, vender, activar, desactivar, actualizar} = pilotos;
+const { confirmedUser, confirmUserGet, checkUserPost} = passRecovery;
 
 //router.get('/registro', registro);
 router.post('/registro', urlencodedParser, registro);
@@ -28,5 +31,9 @@ router.post('/cambiarEmail', cambiarEmail);
 router.get('/administrarUsuarios', administrarUsuarios);
 router.post('/deleteUser', deleteUser);
 router.post('/actualizar', actualizar);
+router.post('/pwrecover', confirmedUser);
+router.get('/pwrecoverReset/:email/:token', confirmUserGet);
+router.post('/pwrecoverReset/:email/:token', checkUserPost);
+
 
 module.exports = router;

@@ -127,7 +127,7 @@ const Perfil = (props) => {
           Cambiar Nombre
         </Button>
         <br />
-        <br />
+
 
         <Form.Label>Introduce tu nuevo Apellido</Form.Label>
         <Form.Control type="text" onChange={(e) => setApellido(e.target.value)} />
@@ -135,7 +135,7 @@ const Perfil = (props) => {
           Cambiar Apellido
         </Button>
         <br />
-        <br />
+
 
         <Form.Label>Introduce tu nuevo Email</Form.Label>
         <Form.Control type="text" onChange={(e) => setEmail(e.target.value)} />
@@ -143,7 +143,7 @@ const Perfil = (props) => {
           Cambiar Email
         </Button>
         <br />
-        <br />
+
 
         <Form.Label>Introduce tu nueva contraseña</Form.Label>
         <Form.Control type="password" onChange={(e) => setContrasena(e.target.value)} />
