@@ -49,7 +49,7 @@ const usuarios = {
             contrasena: passwordHash,
             fk_ranking: ranking.toJSON().id_ranking,
             presupuesto: 20000000,
-            rol: "user",
+            rol: 0,
           });
           res.json({
             message: "Registro con exito",
@@ -104,6 +104,7 @@ const usuarios = {
         res.json({
           message: true,
           id: usuario.id_usuario, 
+          rol: usuario.rol,
           //nombre: usuario.nombre,
           //apellido: usuario.apellido,
           //rol: usuario.rol  
@@ -316,7 +317,7 @@ cambiarNombre: async (req, res) => {
       
       
       const usuarios = await Usuario.findAll({
-        //where: { id_usuario: fkuserid },
+        where: { rol: false },
       });
    
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Verpilotos.css';
 import { Card, Button } from 'react-bootstrap'
 import PilotosUsuarios from './PilotosUsuario';
-
+import UseFetch from "../hooks/useFetch";
 
 
 function Verpilotos(props) {
@@ -10,7 +10,8 @@ function Verpilotos(props) {
   const [pilotos, setPilotos] = useState("");
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
-  const [usuariodata, setUsuariodata] = useState("");
+  //const [usuariodata, setUsuariodata] = useState("");
+  const [usuariodata, setUsuariodata] = UseFetch("");
   const [info, setInfo] = useState("");
   //console.log(pilotos)
   // const requestOptions = {
@@ -24,6 +25,16 @@ function Verpilotos(props) {
   // fetch("registro", requestOptions)
   //   .then((response) => response.json())
   //   .then((res) => setMessage(res.message));
+
+  
+
+  // function botonvender () {
+  //   return <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>;
+  // }
+
+
+ 
+
 
   const vender = (user, id) => {
     console.log("vendido")
@@ -43,6 +54,7 @@ function Verpilotos(props) {
         setInterval(() => { window.location.assign("/verpilotos"); }, 300);
       });
   }
+
 
   const activar = (user, id) => {
     console.log("Piloto activado")
@@ -138,17 +150,18 @@ function Verpilotos(props) {
     };
     fetch("verPilotos", requestOptions)
       .then((res) => res.json())
-      .then(res => { console.log(res); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setUsuariodata(res.usuarioData) })
+      .then(res => { console.log(res.mensaje2); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setUsuariodata(res.usuarioData) })
 
 
     //para ver todos los pilotos
     // fetch("verPilotos")
     //   .then((res) => res.json())
     //   .then(res => { console.log(res); setPilotos(res) })
-    console.log(pilotos)
+    //console.log(pilotos)
   }, [])
 
-  //console.log(user)
+  //console.log(pilotos[2])
+  //console.log(typeof pilotos[2])
 
   return (
     <div className="flex" class="divpilotos">
@@ -159,9 +172,7 @@ function Verpilotos(props) {
         <p class="datosusuario"><b>Presupuesto:</b> <span> {usuariodata.presupuesto} €</span></p>
       </div>
 
-
-      
-      <p className="cargando"> Pilotos Activos</p>
+      {/* {pilotos[2].length != 20 ? <p className="cargando"> Pilotos Activos</p> : ""} */}
 
       <div class="contenedorinfopiloto">
         <p class="ocultar" onClick={() => ocultar()}><b>X</b></p>
@@ -174,27 +185,10 @@ function Verpilotos(props) {
         <p>{info.infopiloto}</p>
       </div>
 
-      <PilotosUsuarios />
+      
       <div class="pilotosusuario">
-
-        {pilotos[0] ? pilotos[0].map((piloto, i) => {
-          return (
-            <Card style={{ width: '18rem' }} key={i}>
-              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
-
-              <Card.Body>
-                <Card.Title>{piloto.nombre}</Card.Title>
-                <Card.Text>{piloto.apellido}</Card.Text>
-                <Card.Text>{piloto.precio} €</Card.Text>
-                <div class="divbotones">
-                  <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
-                  <Button onClick={() => desactivar(piloto.userid, piloto.id_piloto)} variant="success">Desactivar</Button>
-                  <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
-                </div>
-              </Card.Body>
-            </Card>
-          )
-        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+      <PilotosUsuarios pilotoA={pilotos[0]} boton={0}/>
+        
 
         {message2 ?
 

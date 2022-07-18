@@ -32,14 +32,32 @@ const Login = (props) => {
       .then((res) => {
         setInterval(() => {
           if (res.message === true) {
-            localStorage.setItem('user', JSON.stringify({
-              logId: res.id,
+              if (res.rol == false) {
+                localStorage.setItem('user', JSON.stringify({
+                  logId: res.id,
+                   rol: res.rol, 
+
+    
+                }));
+                window.location.assign("/verpilotos");
+              } else {
+                localStorage.setItem('user', JSON.stringify({
+                  logId: res.id,
+                   rol: res.rol, 
+
+    
+                }));
+
+                window.location.assign("/admin");
+              }
+            // localStorage.setItem('user', JSON.stringify({
+            //   logId: res.id, rol: res.rol, 
               //logNombre: res.nombre,
               //logApellido: res.apellido,
               //rol: res.rol,
 
-            }));
-            window.location.assign("/verpilotos");
+            //}));
+            //window.location.assign("/verpilotos");
           } else {
             //alert("Usuario o contraseña incorrectos")
           }

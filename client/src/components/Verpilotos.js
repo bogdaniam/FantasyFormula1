@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Verpilotos.css';
 import { Card, Button } from 'react-bootstrap'
 import PilotosUsuarios from './PilotosUsuario';
-
+import UseFetch from "../hooks/useFetch";
 
 
 function Verpilotos(props) {
@@ -10,123 +10,10 @@ function Verpilotos(props) {
   const [pilotos, setPilotos] = useState("");
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
-  const [usuariodata, setUsuariodata] = useState("");
+  //const [usuariodata, setUsuariodata] = useState("");
+  const [usuariodata, setUsuariodata] = UseFetch("");
   const [info, setInfo] = useState("");
-  //console.log(pilotos)
-  // const requestOptions = {
-  //   method: 'GET',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({
-  //     logId: JSON.parse(localStorage.getItem('user')).logId
-  //   }),
-  // };
-
-  // fetch("registro", requestOptions)
-  //   .then((response) => response.json())
-  //   .then((res) => setMessage(res.message));
-
   
-
-  // function botonvender () {
-  //   return <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>;
-  // }
-
-
- 
-
-
-  const vender = (user, id) => {
-    console.log("vendido")
-    console.log(`Usuario ${user}`)
-    console.log(`id ${id}`)
-    let respuesta = { user: user, id: id }
-    console.log(respuesta)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ respuesta }),
-    };
-
-    fetch("vender", requestOptions)
-      .then((res) => res.json())
-      .then((res) => {
-        setInterval(() => { window.location.assign("/verpilotos"); }, 300);
-      });
-  }
-
-
-  const activar = (user, id) => {
-    console.log("Piloto activado")
-    let respuesta = { user: user, id: id }
-    console.log(respuesta)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ respuesta }),
-    };
-    fetch("activar", requestOptions)
-      .then((res) => res.json())
-      .then((res) => {
-        setInterval(() => { window.location.assign("/verpilotos"); }, 300);
-      });
-  }
-
-
-
-  const desactivar = (user, id) => {
-    console.log("Piloto desactivado")
-    let respuesta = { user: user, id: id }
-    console.log(respuesta)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ respuesta }),
-    };
-    fetch("desactivar", requestOptions)
-      .then((res) => res.json())
-      .then((res) => {
-        setInterval(() => { window.location.assign("/verpilotos"); }, 1000);
-      });
-  }
-
-
-  const comprar = (user, id) => {
-    let respuesta = { user: user, id: id }
-    console.log(respuesta)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ respuesta }),
-    };
-    fetch("comprar", requestOptions)
-      .then((res) => res.json())
-      .then((res) => {
-        setInterval(() => {
-          window.location.assign("/verpilotos");
-        }
-          , 300);
-      });
-  }
-
-  const verinfo = (id) => {
-    let test = document.querySelector(".contenedorinfopiloto")
-    if (test.style.display == 'block') {
-      test.style.display = 'none';
-    } else {
-      test.style.display = 'block'
-    }
-
-    let respuesta = { idpiloto: id }
-    //console.log(respuesta)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ respuesta }),
-    };
-    fetch("infopilotos", requestOptions)
-      .then((res) => res.json())
-      .then((res) => { console.log(res); setInfo(res) });
-  }
 
   const ocultar = () => {
     let test = document.querySelector(".contenedorinfopiloto")
@@ -149,7 +36,7 @@ function Verpilotos(props) {
     };
     fetch("verPilotos", requestOptions)
       .then((res) => res.json())
-      .then(res => { console.log(res.mensaje2); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2); setUsuariodata(res.usuarioData) })
+      .then(res => { console.log(res.mensaje2); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2) })
 
 
     //para ver todos los pilotos
@@ -159,7 +46,8 @@ function Verpilotos(props) {
     //console.log(pilotos)
   }, [])
 
-  //console.log(user)
+  //console.log(pilotos[2])
+  //console.log(typeof pilotos[2])
 
   return (
     <div className="flex" class="divpilotos">
@@ -170,7 +58,7 @@ function Verpilotos(props) {
         <p class="datosusuario"><b>Presupuesto:</b> <span> {usuariodata.presupuesto} €</span></p>
       </div>
 
-      <p className="cargando"> Pilotos Activos</p>
+      {/* {pilotos[2].length != 20 ? <p className="cargando"> Pilotos Activos</p> : ""} */}
 
       <div class="contenedorinfopiloto">
         <p class="ocultar" onClick={() => ocultar()}><b>X</b></p>
@@ -185,53 +73,16 @@ function Verpilotos(props) {
 
       
       <div class="pilotosusuario">
-      <PilotosUsuarios pilotoA={pilotos[0]} />
+      <PilotosUsuarios pilotoA={pilotos[0]} boton={0}/>
         
 
         {message2 ?
 
-          pilotos[1] ? pilotos[1].map((piloto, i) => {
-            return (
-              <Card style={{ width: '18rem' }} key={i}>
-                <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+          <PilotosUsuarios pilotoA={pilotos[1]} boton={1}/>
 
-                <Card.Body>
-                  <Card.Title>{piloto.nombre}</Card.Title>
-                  <Card.Text>{piloto.apellido}</Card.Text>
-                  <Card.Text>{piloto.precio} €</Card.Text>
-                  <div class="divbotones">
+          :<PilotosUsuarios pilotoA={pilotos[1]} boton={2}/>
 
-                    <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
-                    <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary">Activar</Button>
-                    <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
-                  </div>
-
-                </Card.Body>
-              </Card>
-            )
-          }) : <p className="cargando"> Cargando Pilotos . . . </p>
-
-          : pilotos[1] ? pilotos[1].map((piloto, i) => {
-            return (
-              <Card style={{ width: '18rem' }} key={i}>
-                <Card.Img variant="top" src={`./img/${piloto.foto}`} />
-
-                <Card.Body>
-                  <Card.Title>{piloto.nombre}</Card.Title>
-                  <Card.Text>{piloto.apellido}</Card.Text>
-                  <Card.Text>{piloto.precio} €</Card.Text>
-                  <div class="divbotones">
-
-                    <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
-                    <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary" disabled>Activar</Button>
-                    <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
-
-                  </div>
-
-                </Card.Body>
-              </Card>
-            )
-          }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+      }
 
       </div>
 
@@ -240,70 +91,15 @@ function Verpilotos(props) {
 
         {message ?
 
-          pilotos[2] ? pilotos[2].map((piloto, i) => {
-            return (
-              <Card style={{ width: '18rem' }} key={i}>
-                <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+<PilotosUsuarios pilotoA={pilotos[2]} boton={3}/>
+          
+:<PilotosUsuarios pilotoA={pilotos[2]} boton={4}/>
 
-                <Card.Body>
-                  <Card.Title>{piloto.nombre}</Card.Title>
-                  <Card.Text>{piloto.apellido}</Card.Text>
-                  <Card.Text>{piloto.precio} €</Card.Text>
-                  <div class="divbotones">
-
-                    <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)}>Comprar</Button>
-                    <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
-
-                  </div>
-
-                </Card.Body>
-              </Card>
-            )
-          }) : <p className="cargando"> Cargando Pilotos . . . </p>
-
-          : pilotos[2] ? pilotos[2].map((piloto, i) => {
-            return (
-              <Card style={{ width: '18rem' }} key={i}>
-                <Card.Img variant="top" src={`./img/${piloto.foto}`} />
-
-                <Card.Body>
-                  <Card.Title>{piloto.nombre}</Card.Title>
-                  <Card.Text>{piloto.apellido}</Card.Text>
-                  <Card.Text>{piloto.precio} €</Card.Text>
-                  <div class="divbotones">
-
-                    <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} disabled>Comprar</Button>
-                    <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
-
-                  </div>
-
-                </Card.Body>
-              </Card>
-            )
-          }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+        }
 
 
-
-        {pilotos[3] ? pilotos[3].map((piloto, i) => {
-          return (
-            <Card style={{ width: '18rem' }} key={i}>
-              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
-
-              <Card.Body>
-                <Card.Title>{piloto.nombre}</Card.Title>
-                <Card.Text>{piloto.apellido}</Card.Text>
-                <Card.Text>{piloto.precio} €</Card.Text>
-                <div class="divbotones">
-                  <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} variant="danger" disabled>Comprar</Button>
-                  <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
-
-
-                </div>
-
-              </Card.Body>
-            </Card>
-          )
-        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+<PilotosUsuarios pilotoA={pilotos[3]} boton={5}/>
+        
 
 
 

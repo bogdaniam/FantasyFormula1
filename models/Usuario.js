@@ -33,7 +33,7 @@ const Usuario = sequelize.define('usuarios', {
     allowNull: false,
   }, 
   rol: {
-    type: Sequelize.STRING,
+    type: Sequelize.BOOLEAN,
     allowNull: false,
   },
 });
