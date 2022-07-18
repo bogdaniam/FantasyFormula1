@@ -6,7 +6,7 @@ class Logear extends Component{
 
     render() {
         return (
-            <div>
+            <div class="centrado">
                 <Navbar />
                 <Login/>
             </div>

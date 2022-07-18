@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './Ranking.css';
+
 import { Card } from 'react-bootstrap'
 
 
@@ -17,7 +17,7 @@ function Ranking(props) {
 
 
     return (
-        <div className="flex" class="ranking">
+        <div className="ranking">
 
             {ranking ? ranking.map((rank, i) => {
                 return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../components/Login.css";
+
 
 const Home = (props) => {
   const [message, setMessage] = useState("");
@@ -22,7 +22,13 @@ const Home = (props) => {
 
   return (
     <div className="flex">
-      <h1>Under construction</h1>
+      <div>
+        
+      </div>
+
+      <div>
+        
+      </div>
       
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from 'react-bootstrap';
-import "../components/Profile.css";
+
 
 
 const Perfil = (props) => {

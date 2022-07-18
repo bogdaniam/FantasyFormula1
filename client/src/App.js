@@ -1,41 +1,22 @@
-// //import React, { useState } from "react";
-// import "./App.css";
-// import Login from './components/Login';
-// import Registro from './components/Registro';
-// import Verpilotos from './components/Verpilotos';
-// import Navbar from './components/Navbar';
-// const App = () => {
-
-
-// //<Login/>
-// //<Registro/>
-// //Verpilotos
-//   return (
-//     <div className="flex">
-//      <Navbar/>
-//       <Verpilotos/>
-
-//     </div>
-//   );
-// };
-
-// export default App;
-
-
 import React, { Component } from "react";
 import { BrowserRouter ,Link } from "react-router-dom";
 import MainComponent from "./components/Main";
 import Navbar from "./components/Navbar";
 import "./App.css"
-import "./components/Verpilotos.css"
+
+//import imagenbackground from "../public/img/background"
+import botonContext from "./context/botonContext";
+
 
 class App extends Component {
 
 
 render() {
     return (
+        <botonContext.Provider value="Actualizar la base de datos">
         <BrowserRouter>
-            <div class="mainapp">
+         
+            <div  class="mainapp" >
                 <div class="navb">
                 
                
@@ -44,9 +25,11 @@ render() {
                 
                 
             </div>
+            
         </BrowserRouter>
+        </botonContext.Provider>
     );
-}º
+}
 }
 export default App;
 

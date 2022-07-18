@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../components/Login.css";
 import { Form, Button } from 'react-bootstrap';
 
 
@@ -32,29 +31,29 @@ const Login = (props) => {
       .then((res) => {
         setInterval(() => {
           if (res.message === true) {
-              if (res.rol == false) {
-                localStorage.setItem('user', JSON.stringify({
-                  logId: res.id,
-                   rol: res.rol, 
+            if (res.rol == false) {
+              localStorage.setItem('user', JSON.stringify({
+                logId: res.id,
+                rol: res.rol,
 
-    
-                }));
-                window.location.assign("/verpilotos");
-              } else {
-                localStorage.setItem('user', JSON.stringify({
-                  logId: res.id,
-                   rol: res.rol, 
 
-    
-                }));
+              }));
+              window.location.assign("/verpilotos");
+            } else {
+              localStorage.setItem('user', JSON.stringify({
+                logId: res.id,
+                rol: res.rol,
 
-                window.location.assign("/admin");
-              }
+
+              }));
+
+              window.location.assign("/admin");
+            }
             // localStorage.setItem('user', JSON.stringify({
             //   logId: res.id, rol: res.rol, 
-              //logNombre: res.nombre,
-              //logApellido: res.apellido,
-              //rol: res.rol,
+            //logNombre: res.nombre,
+            //logApellido: res.apellido,
+            //rol: res.rol,
 
             //}));
             //window.location.assign("/verpilotos");
@@ -69,7 +68,7 @@ const Login = (props) => {
   const recuperar = () => {
     window.location.assign("/pwrecover");
 
-          }
+  }
 
 
 
@@ -78,19 +77,19 @@ const Login = (props) => {
 
 
   return (
-    <div className="flex">
+    <div class="login">
       <h1 class="aviso">{message ? message : "Bienvenido"}</h1>
       <div class="recuperarcontrasena">
-      <Form.Label for="usuarioLogin">Introduce tu email</Form.Label>
-      <Form.Control if="usuarioLogin" type="text" onChange={(e) => setUser(e.target.value)} />
-      <Form.Label for="contrasenaLogin">Introduce tu contraseña</Form.Label>
-      <Form.Control id="contrasenaLogin" type="password" onChange={(e) => setContrasena(e.target.value)} />
-      <br />
-      <Button onClick={() => sendData()}>Log in</Button>
-      <br />
-      <br />
-      <Form.Label for="usuarioLogin">Se te ha olvidado la contraseña?¿</Form.Label>
-      <Button onClick={() => recuperar()}>Recuperar contraseña</Button>
+        <Form.Label for="usuarioLogin">Introduce tu email</Form.Label>
+        <Form.Control if="usuarioLogin" type="text" onChange={(e) => setUser(e.target.value)} />
+        <Form.Label for="contrasenaLogin">Introduce tu contraseña</Form.Label>
+        <Form.Control id="contrasenaLogin" type="password" onChange={(e) => setContrasena(e.target.value)} />
+        <br />
+        <Button onClick={() => sendData()}>Log in</Button>
+        <br />
+        <br />
+        <Form.Label for="usuarioLogin">Se te ha olvidado la contraseña?¿</Form.Label>
+        <Button onClick={() => recuperar()}>Recuperar contraseña</Button>
       </div>
 
 

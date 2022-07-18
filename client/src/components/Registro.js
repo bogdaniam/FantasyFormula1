@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../components/Login.css";
+
 import { Form, Button } from 'react-bootstrap';
 
 const Registro = () => {
@@ -40,7 +40,7 @@ const Registro = () => {
 
 
   return (
-    <div className="flex">
+    <div className="registro">
       <h1 class="aviso">{message ? message : "Registro"}</h1>
 
       <div class="recuperarcontrasena">

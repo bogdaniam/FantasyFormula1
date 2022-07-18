@@ -102,17 +102,19 @@ const PilotosUsuarios = (props) => {
     fetch("infopilotos", requestOptions)
       .then((res) => res.json())
       .then((res) => { console.log(res); setInfo(res) });
+
   }
 
 
-  const ocultar = () => {
-    let test = document.querySelector(".contenedorinfopiloto")
-    if (test.style.display == 'inline') {
-      test.style.display = 'block';
-    } else {
-      test.style.display = 'none'
-    }
-  }
+
+  // const ocultar = () => {
+  //   let test = document.querySelector(".contenedorinfopiloto")
+  //   if (test.style.display == 'inline') {
+  //     test.style.display = 'block';
+  //   } else {
+  //     test.style.display = 'none'
+  //   }
+  // }
 
 
   useEffect(() => {
@@ -136,7 +138,7 @@ const PilotosUsuarios = (props) => {
     if (boton == 0) {
       const boton = <div class="divbotones"><Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
         <Button onClick={() => desactivar(piloto.userid, piloto.id_piloto)} variant="success">Desactivar</Button>
-        <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
+        <Button onClick={() => verinfo(piloto.id_piloto)} variant="light">Info</Button>
       </div>
       return boton
     }
@@ -145,7 +147,7 @@ const PilotosUsuarios = (props) => {
       const boton = <div class="divbotones">
         <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
         <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary">Activar</Button>
-        <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
+        <Button onClick={() => verinfo(piloto.id_piloto)} variant="light">Info</Button>
       </div>
       return boton
     }
@@ -154,7 +156,7 @@ const PilotosUsuarios = (props) => {
       const boton = <div class="divbotones">
         <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
         <Button onClick={() => activar(piloto.userid, piloto.id_piloto)} variant="secondary" disabled>Activar</Button>
-        <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
+        <Button onClick={() => verinfo(piloto.id_piloto)} variant="light">Info</Button>
       </div>
       return boton
     }
@@ -162,7 +164,7 @@ const PilotosUsuarios = (props) => {
     if (boton == 3) {
       const boton = <div class="divbotones">
         <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)}>Comprar</Button>
-        <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
+        <Button onClick={() => verinfo(piloto.id_piloto)} variant="light">Info</Button>
       </div>
       return boton
     }
@@ -170,7 +172,7 @@ const PilotosUsuarios = (props) => {
     if (boton == 4) {
       const boton = <div class="divbotones">
         <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} disabled>Comprar</Button>
-        <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
+        <Button onClick={() => verinfo(piloto.id_piloto)} variant="light">Info</Button>
       </div>
       return boton
     }
@@ -178,7 +180,7 @@ const PilotosUsuarios = (props) => {
     if (boton == 5) {
       const boton = <div class="divbotones">
         <Button onClick={() => comprar(piloto.userid, piloto.id_piloto)} variant="danger" disabled>Comprar</Button>
-        <Button onClick={() => verinfo(piloto.id_piloto)} variant="info">Info</Button>
+        <Button onClick={() => verinfo(piloto.id_piloto)} variant="light">Info</Button>
       </div>
       return boton
     }
@@ -191,27 +193,34 @@ const PilotosUsuarios = (props) => {
 
 
   return (
-    <div class="pilotosusuario">
-
-      {props.pilotoA ? props.pilotoA.map((piloto, i) => {
-        return (
-          <Card style={{ width: '18rem' }} key={i}>
-            <Card.Img variant="top" src={`./img/${piloto.foto}`} />
-
-            <Card.Body>
-              <Card.Title>{piloto.nombre}</Card.Title>
-              <Card.Text>{piloto.apellido}</Card.Text>
-              <Card.Text>{piloto.precio} €</Card.Text>
-
-              {pintarBotones(props.boton, piloto)}
+    <div>
 
 
 
-            </Card.Body>
-          </Card>
-        )
-      }) : <p className="cargando"> Cargando Pilotos . . . </p>}
 
+      <div class="pilotosusuario">
+
+    
+        {props.pilotoA ? props.pilotoA.map((piloto, i) => {
+          return (
+            <Card style={{ width: '18rem' }} key={i}>
+              <Card.Img variant="top" src={`./img/${piloto.foto}`} />
+
+              <Card.Body>
+                <Card.Title>{piloto.nombre}</Card.Title>
+                <Card.Text>{piloto.apellido}</Card.Text>
+                <Card.Text>{piloto.precio} €</Card.Text>
+
+                {pintarBotones(props.boton, piloto)}
+
+
+
+              </Card.Body>
+            </Card>
+          )
+        }) : <p className="cargando"> Cargando Pilotos . . . </p>}
+
+      </div>
     </div>
   )
 }

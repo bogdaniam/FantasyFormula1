@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import './Ranking.css';
+
 import { Card, Button, Form } from 'react-bootstrap'
+import ActualizarBaseDeDatos from './ActualizarBaseDeDatos'
 
 
 function Admin(props) {
@@ -31,45 +32,47 @@ function Admin(props) {
             });
     }
 
-    const actualizarResultados = () => {
-        fetch(`https://ergast.com/api/f1/current/last/results.json`)
-            .then(res => res.json())
-            .then(json => { setResultados(json.MRData.RaceTable.Races[0]); console.log(json.MRData.RaceTable.Races[0]) })
+    // // const actualizarResultados = () => {
+    // //     fetch(`https://ergast.com/api/f1/current/last/results.json`)
+    // //         .then(res => res.json())
+    // //         .then(json => { setResultados(json.MRData.RaceTable.Races[0]); console.log(json.MRData.RaceTable.Races[0]) })
 
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ resultados }),
-        };
+    // //     const requestOptions = {
+    // //         method: 'POST',
+    // //         headers: { 'Content-Type': 'application/json' },
+    // //         body: JSON.stringify({ resultados }),
+    // //     };
 
-        fetch("actualizar", requestOptions)
-            .then((res) => res.json())
-            .then((res) => {
-                console.log(res.resultados)
+    // //     fetch("actualizar", requestOptions)
+    // //         .then((res) => res.json())
+    // //         .then((res) => {
+    // //             console.log(res.resultados)
 
-            });
-    }
-
-
-
+    // //         });
+    // // }
 
 
 
 
-    fetch("actualizar")
-        .then((res) => res.json())
-        .then((res) => {
 
-        });
+
+
+    // fetch("actualizar")
+    //     .then((res) => res.json())
+    //     .then((res) => {
+
+    //     });
 
 
 
     return (
-        <div className="flex" class="admin">
+        <div  class="admin">
             <div class="actualizar">
                 {/* <Form.Label>Actualizar la base de datos</Form.Label> */}
-                <Button onClick={() => actualizarResultados()} >Actualizar Base de datos</Button>
+                {/* <Button onClick={() => actualizarResultados()} >Actualizar Base de datos</Button> */}
+                <ActualizarBaseDeDatos/>
+
             </div>
 
             <div class="usuarios">
@@ -99,7 +102,7 @@ function Admin(props) {
 
                                     <Card.Title style={{ width: '40%' }}>  {user.email} </Card.Title>
 
-                                    <Button style={{ width: '10%' }} onClick={() => deleteUser(user.id_usuario)} >Borrar</Button>
+                                    <Button variant="danger" style={{ width: '10%' }} onClick={() => deleteUser(user.id_usuario)} >Borrar</Button>
                                 </Card.Body>
                             </Card>
                         </div>

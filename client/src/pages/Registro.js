@@ -5,7 +5,7 @@ class Registrar extends Component{
 
     render() {
         return (
-            <div>
+            <div class="centrado">
                 <Navbar pagina3="verificacion"/>
                 <Registro/>
             </div>

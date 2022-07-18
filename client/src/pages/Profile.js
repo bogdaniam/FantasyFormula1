@@ -6,7 +6,7 @@ class Perfil extends Component{
 
     render() {
         return (
-            <div>
+            <div class="centrado">
                 <Navbar />
                 <Profile/>
             </div>

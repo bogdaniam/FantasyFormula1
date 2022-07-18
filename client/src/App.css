@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -46,14 +47,12 @@
   flex-direction: column;
 }
 
-.password {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 
 .aviso{
-  padding: 7rem;
+  margin: 3rem 0rem 5rem 0rem;
+  padding-bottom: 1rem;
+
 }
 
 .recuperarcontrasena {
@@ -84,7 +83,7 @@
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  margin: 0.7rem !important;
+  margin: 0.5rem !important;
 }
 
 .actualizar{
@@ -95,4 +94,174 @@
   padding: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+body{
+  background-image: url("C:\Users\mihai\Desktop\FantasyFormula1\client\public\img\background.jpg") ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+}
+
+.centrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+}
+
+
+.registro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+
+}
+
+.datosUsuario {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cambiarDatos{
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+}
+
+.ranking {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.card {
+  margin: 1rem !important;
+  background-color: rgba(96, 205, 255, 0.927) !important;
+}
+
+.App{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1%;
+}
+.cargando{
+  text-align: center;
+}
+
+.divpilotos {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pilotosusuario {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  z-index: 1;
+
+}
+
+.contenedorinfopiloto{
+  display: none;
+  z-index: 100;
+  position: sticky;
+  top: 252px;
+  background-color: rgb(146, 195, 255);
+  border-radius: 20px;
+  padding: 10px;
+  width: 50%;
+}
+
+.ocultar{
+  display: flex;
+  justify-content: flex-end;
+  padding: 3px;
+  color: red;
+}
+
+.ocultar:hover{
+  cursor: pointer;
+}
+
+.divdatosusuario{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  
+
+}
+
+.datosusuario{
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.927) !important;
+  margin: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 5%;
+}
+
+span {
+  color: rgb(0, 51, 255);
+}
+
+.divbotones {
+  display: flex;
+  justify-content: space-around;
 }

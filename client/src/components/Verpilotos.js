@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './Verpilotos.css';
+
 import { Card, Button } from 'react-bootstrap'
 import PilotosUsuarios from './PilotosUsuario';
 import UseFetch from "../hooks/useFetch";
@@ -24,6 +24,27 @@ function Verpilotos(props) {
     }
   }
 
+  const verinfo = (id) => {
+    let test = document.querySelector(".contenedorinfopiloto")
+    if (test.style.display == 'block') {
+      test.style.display = 'none';
+    } else {
+      test.style.display = 'block'
+    }
+
+    let respuesta = { idpiloto: id }
+    //console.log(respuesta)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ respuesta }),
+    };
+    fetch("infopilotos", requestOptions)
+      .then((res) => res.json())
+      .then((res) => { console.log(res); setInfo(res) });
+
+  }
+
   useEffect(() => {
 
     //para ver los pilotos de un usuario
@@ -38,16 +59,8 @@ function Verpilotos(props) {
       .then((res) => res.json())
       .then(res => { console.log(res.mensaje2); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2) })
 
-
-    //para ver todos los pilotos
-    // fetch("verPilotos")
-    //   .then((res) => res.json())
-    //   .then(res => { console.log(res); setPilotos(res) })
-    //console.log(pilotos)
   }, [])
 
-  //console.log(pilotos[2])
-  //console.log(typeof pilotos[2])
 
   return (
     <div className="flex" class="divpilotos">

@@ -38,7 +38,7 @@ function PWRecovery() {
 
 
     return (
-        <div class="password">
+        <div class="password ">
             <h1 class="aviso" >{message ? message : "Recuperar contraseña"}</h1>
 
             <div class="recuperarcontrasena">

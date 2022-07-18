@@ -353,7 +353,7 @@ cambiarNombre: async (req, res) => {
 
 
     const usuariosN = await Usuario.findAll({
-      //where: { id_usuario: fkuserid },
+      where: { rol: false },
     });
  
 
