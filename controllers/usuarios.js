@@ -2,7 +2,8 @@
 const Usuario = require('../models/Usuario');
 const Ranking = require('../models/Ranking');
 const { encrypt, compare } = require('../helpers/handleBcrypt');
-
+const jwt = require("jsonwebtoken");
+const sendMail = require("../email")
 
 
 
@@ -97,6 +98,7 @@ const usuarios = {
       }
       const checkPassword = await compare(passwordLogin, usuario.contrasena);
 
+      
       if (checkPassword) {
         
         //res.send(`Bienvenido ${usuario.nombre}. Login ok`);

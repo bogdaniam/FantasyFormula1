@@ -82,12 +82,12 @@ console.log(info)
       <div class="contenedorinfopiloto">
         <p class="ocultar" onClick={() => ocultar()}><b>X</b></p>
         
-        <h1>Nombre y Apellido: {info.nombre} {info.apellido}</h1>
-        <h3>Fecha nacimiento: {info.fechanacimiento}</h3>
-        <h3>Lugar de nacimiento: {info.lugarnacimiento}</h3>
-        <h3>Equipo actual: {info.equipoactual}</h3>
-        <h5>Info</h5>
-        <p>{info.infopiloto}</p>
+        <h3><span>Nombre y Apellido: </span><b>{info.nombre} {info.apellido}</b></h3>
+        <h3><span>Fecha nacimiento: </span><b>{info.fechanacimiento}</b></h3>
+        <h3><span>Lugar de nacimiento: </span><b>{info.lugarnacimiento}</b></h3>
+        <h3><span>Equipo actual: </span><b>{info.equipoactual}</b></h3>
+        <h5><span>Info</span></h5>
+        <p><b>{info.infopiloto}</b></p>
       </div>
 
       
@@ -105,7 +105,7 @@ console.log(info)
 
       </div>
 
-      <p className="cargando"> Pilotos Restantes</p>
+      {/* <p className="cargando"> Pilotos Restantes</p> */}
       <div class="pilotosusuario">
 
         {message ?

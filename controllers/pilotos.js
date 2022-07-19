@@ -329,9 +329,9 @@ const pilotos = {
       //console.log(resultados.date)
       let fecha = await resultados.date;
       //console.log(resultados.Results[0].position)
-      let length = await resultados.Results
+      let tamano = await resultados.Results
       //console.log(length.length)
-      for (let i = 0; i < length.length; i++) {
+      for (let i = 0; i < tamano.length; i++) {
         let numeroPiloto = await resultados.Results[i].number
         const piloto = await Pilotos.findOne({
           where: { numero: numeroPiloto },
@@ -394,8 +394,8 @@ const pilotos = {
 
       })
     } catch (error) {
-      console.error(error);
-      res.send(error);
+      //console.error(error);
+      //res.send(error);
     }
   },
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../components/Navbar.css';
 import { Card, Button } from 'react-bootstrap'
 import UseFetch from "../hooks/useFetch";
 import Verpilotos from './Verpilotos';

@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const sendMail = require("../email")
 const { encrypt, compare } = require('../helpers/handleBcrypt');
 
-const SECRET = "supermax";
 
 const passRecovery = {
 
@@ -22,7 +21,7 @@ const passRecovery = {
 
             };
 
-            const token = jwt.sign(payload, SECRET, { expiresIn: "45m" });
+            const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "45m" });
 
             const link = `<a href="http://localhost:3000/pwrecoverReset/${email}/${token}">Cambiar contraseña</a>`;
             //console.log(link);
@@ -57,7 +56,7 @@ const passRecovery = {
             console.log("el email coincide")
 
             try {
-              const comprobar = jwt.verify(token, SECRET);
+              const comprobar = jwt.verify(token, process.env.SECRET);
               console.log("confirmed-user");
   
   
@@ -128,7 +127,7 @@ const passRecovery = {
             console.log("el email no coincide")
           }
         try {
-            const comprobar = jwt.verify(token, SECRET);
+            const comprobar = jwt.verify(token, process.env.SECRET);
             console.log("confirmed-user");
             res.json(window.location.assign("/pwrecoverReset"),{email: email} )
 

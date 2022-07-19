@@ -13,7 +13,7 @@ class App extends Component {
 
 render() {
     return (
-        <botonContext.Provider value="Actualizar la base de datos">
+        <botonContext.Provider value="Actualizar resultados">
         <BrowserRouter>
          
             <div  class="mainapp" >

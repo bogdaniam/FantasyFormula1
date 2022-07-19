@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import '../components/Navbar.css';
+
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 

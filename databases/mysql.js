@@ -13,11 +13,11 @@ logging: false
 sequelize
   .authenticate()
   .then(() => {
-    //console.log('Conexión con MySQL establecida');
-    console.log('MySQL: Me also 😅');
+
+    console.log('MySQL: Conexion establecida');
   })
   .catch((err) => {
-    console.log(`MySQL: I'm dead 💀`);
-    //console.log('No conectado a MySQL: ' + err);
+    console.log(`MySQL: Error en la conexion`);
+    
   });
 module.exports = sequelize;

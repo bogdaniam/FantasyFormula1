@@ -224,10 +224,10 @@ body{
   z-index: 100;
   position: sticky;
   top: 252px;
-  background-color: rgb(146, 195, 255);
+  background-color: #b5cefd;
   border-radius: 20px;
   padding: 10px;
-  width: 50%;
+  width: 60%;
 }
 
 .ocultar{
@@ -265,3 +265,107 @@ span {
   display: flex;
   justify-content: space-around;
 }
+
+.headerNav {
+  box-sizing: border-box;
+  background-color: rgb(190, 190, 190);
+  /* background-color: #282C34; */
+  width: 100%;
+  min-height: 7vh;
+  display: flex;
+  flex-direction: row;
+  font-size: calc(10px + 2vmin);
+  color: rgb(47, 196, 255);
+  flex-wrap: nowrap;
+  }
+  
+  .navbar-sing {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 7vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  z-index: 1;
+  /* background-color: #282C34; */
+  align-items: center;
+  flex-wrap: nowrap;
+  }
+  
+  
+  .buttonHome {
+  font-family: 'Poppins', sans-serif;
+  width: 71px;
+  height: 31px;
+  background: none;
+  margin-right: 3px;
+  border: none;
+  color: rgb(5, 113, 255);
+  font-size: 19px;
+  text-decoration: none;
+  }
+  .buttonHome:hover {
+  /* background-color: #111111; */
+  color: #111111;
+  }
+  
+  .titulo{
+   font-size: 3rem;
+  }
+
+  .divtitulo {
+    margin: 3rem;
+    background-color: #ffdd00e9;
+    border-radius: 3rem 0rem 3rem 0rem;
+    padding: 2rem;
+  }
+
+  .divinfoyactualizacion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-height: 50%;
+  }
+
+  .divinfo{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border: #ff0000;
+    border-radius: 1rem;
+
+    
+  }
+
+  .infofoto{
+    width: 100%;
+    height: 40%;
+    border-radius: 1rem 1rem 0rem 0rem;
+    
+  }
+
+  .infoapp {
+    background-color: rgb(146, 195, 255);
+    width: 100%;
+    height: 60%;
+    border-radius: 0rem 0rem 1rem 1rem;
+  }
+
+  .descripcion{
+    padding: 1rem;
+  }
+
+  .actualizacion {
+    background-color: rgb(146, 195, 255);
+    display: flex;
+    flex-direction: column;
+    width:40%;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  
+
+  
+
