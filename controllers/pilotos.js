@@ -17,7 +17,7 @@ const pilotos = {
       const piloto = await Pilotos.findOne({
         where: { id_piloto: idpiloto },
       });
-      //console.log(piloto.foto)
+      
 
       //el mongodb, vamos a buscar el piloto sobre cual acabamos de pinchar
       const pilotoM = await infopiloto.findOne({ _id: (`${piloto.id_mongo}`) })
@@ -38,7 +38,7 @@ const pilotos = {
       const usuario = await Usuario.findOne({
         where: { id_usuario: fkuserid },
       });
-      console.log(usuario.presupuesto)
+      //console.log(usuario.presupuesto)
       //const usuarioPiloto = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid }});
       //const pilotos = await Pilotos.findAll({ where: { id_piloto: usuarioPiloto.fk_piloto }});
       //console.log(usuarioPiloto)
@@ -141,7 +141,7 @@ const pilotos = {
 
       pilotosTodos.push(pilotosRestantesMenos)
       pilotosTodos.push(pilotosRestantesMayor)
-      console.log(pilotosTodos)
+      //console.log(pilotosTodos)
 
 
 

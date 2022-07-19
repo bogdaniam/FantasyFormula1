@@ -35,16 +35,20 @@ const Login = (props) => {
               localStorage.setItem('user', JSON.stringify({
                 logId: res.id,
                 rol: res.rol,
-
-
               }));
+
+              localStorage.setItem('token', JSON.stringify({
+                token: res.token,
+              }));
+
               window.location.assign("/verpilotos");
             } else {
               localStorage.setItem('user', JSON.stringify({
                 logId: res.id,
                 rol: res.rol,
-
-
+              }));
+              localStorage.setItem('token', JSON.stringify({
+                token: res.token,
               }));
 
               window.location.assign("/admin");

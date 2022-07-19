@@ -7,6 +7,7 @@ const sendMail = require("../email")
 
 
 
+
 const usuarios = {
   
   registro: async (req, res) => {
@@ -52,6 +53,7 @@ const usuarios = {
             presupuesto: 20000000,
             rol: 0,
           });
+          sendMail("formula1fantasytb@gmail.com", `${email}`, "Registro", "Te has registrado con exito")
           res.json({
             message: "Registro con exito",
           });
@@ -98,27 +100,34 @@ const usuarios = {
       }
       const checkPassword = await compare(passwordLogin, usuario.contrasena);
 
-      
+      const payload = {
+        idpay: usuario.id_usuario,
+        rol: usuario.rol,
+
+
+
+    };
+
+    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "45m" });
+    console.log(usuario.id_usuario)
+
+
       if (checkPassword) {
         
-        //res.send(`Bienvenido ${usuario.nombre}. Login ok`);
+
         
         res.json({
           message: true,
           id: usuario.id_usuario, 
           rol: usuario.rol,
-          //nombre: usuario.nombre,
-          //apellido: usuario.apellido,
-          //rol: usuario.rol  
+          token:token,
+          
       })
 
-        //console.log(usuario)
-        // res.json({
-        //   message: `Bienvenido ${usuario.nombre}. Login ok`,
-        // });
+  
 
       } else {
-        //res.send("Contraseña erronea");
+        
         res.json({
           message: `Contraseña erronea`,
         });

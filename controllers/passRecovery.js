@@ -25,7 +25,7 @@ const passRecovery = {
 
             const link = `<a href="http://localhost:3000/pwrecoverReset/${email}/${token}">Cambiar contraseña</a>`;
             //console.log(link);
-            sendMail("mihaithebridge@gmail.com", `${email}`, "Recuperacion de contraseña", `${link}`)
+            sendMail("formula1fantasytb@gmail.com", `${email}`, "Recuperacion de contraseña", `${link}`)
 
             res.json({
               message: "En breve recibiras un email, para restablecer la contraseña",
@@ -63,7 +63,7 @@ const passRecovery = {
               const cambioContrasena = await Usuario.update({ contrasena: passwordHash }, {
                   where: { id_usuario: usuario.id_usuario },
                 });
-                sendMail("mihaithebridge@gmail.com", `${email}`, "Cambio Contraseña", "Tu contraseña se ha cambiado con exito")
+                sendMail("formula1fantasytb@gmail.com", `${email}`, "Cambio Contraseña", "Tu contraseña se ha cambiado con exito")
                 res.json({
                   message: "Cambio realizado con exito",
                 });

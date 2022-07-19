@@ -1,15 +1,42 @@
-
+const jwt = require("jsonwebtoken");
 
 function middleware(req, res, next) {
-  if (usuario.rol == 'admin') {
-    next();
+  const token = req.body.respuesta.token
+  //try {
+
+
+  if (token) {
+    jwt.verify(token, process.env.SECRET, (err, decodedtoken) => {
+      if (err) {
+        console.log("token no valido")
+        res.json({
+          tokenValido: false,
+        })
+      } else {
+      console.log("token valido")
+      next();
+
+      }
+    })
+
   } else {
-    res
-      .status(403)
-      .send(
-        `Sorry but you are not an admin and you do not have access to route ${req.url}`
-      );
+
+
   }
-  console.log('Este es el que sale: ' + req.body.isAdmin);
+
+
+  // }
+
+  // catch (error) {
+
+  // }
+
+
+
+
+
+
+
+
 }
 module.exports = { middleware };

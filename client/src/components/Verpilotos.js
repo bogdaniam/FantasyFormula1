@@ -59,8 +59,16 @@ function Verpilotos(props) {
     };
     fetch("verPilotos", requestOptions)
       .then((res) => res.json())
-      .then(res => { console.log(res.mensaje2); setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2) })
-
+      .then(res => { 
+        if(res.tokenValido == false) {
+          window.location.assign("/");
+        } else {
+        
+        
+        setPilotos(res.pilotosTodos); setMessage(res.mensaje); setMessage2(res.mensaje2) 
+        }
+      })
+  
   }, [])
 
   // const recojerDatoHijo = (data) => {
