@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 class PWRecoverReset extends Component {
 
     render() {
-        return <div>
+        return <div class="centrado">
             <Navbar />
             <PWRecoveryReset />
         </div>;

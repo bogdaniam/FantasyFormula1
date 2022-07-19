@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from 'react-bootstrap';
-import './PWRecovery.css';
+
 
 
 function PWRecovery() {

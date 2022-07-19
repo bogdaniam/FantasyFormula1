@@ -24,6 +24,8 @@ const Navbar = (props) => {
 
             <div class="navbar-sing">
 
+            {logeado == null ? <button className="buttonHome"><Link to={"/"} className="buttonHome">Home</Link></button> : ""}
+
 
                 {logeado == null ? <button className="buttonHome"><Link to={"/login"} className="buttonHome">Log in</Link></button> : ""}
 

@@ -5,8 +5,8 @@ const sendMail = (from, to, subject, html) => {
         service:  "gmail",
         secure:false,
         auth : {
-            user : "mihaithebridge@gmail.com",
-            pass : "ixtrpwtquqpxsufm"
+            user : "formula1fantasytb@gmail.com",
+            pass : "wxiwaozsjbugkqfc"
         },
         tls: {
             rejectUnauthorized: false

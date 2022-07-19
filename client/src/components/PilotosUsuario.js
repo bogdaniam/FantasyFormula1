@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../components/Navbar.css';
 import { Card, Button } from 'react-bootstrap'
 import UseFetch from "../hooks/useFetch";
-
+import Verpilotos from './Verpilotos';
 
 
 const PilotosUsuarios = (props) => {
@@ -101,20 +101,13 @@ const PilotosUsuarios = (props) => {
     };
     fetch("infopilotos", requestOptions)
       .then((res) => res.json())
-      .then((res) => { console.log(res); setInfo(res) });
-
+      .then((res) => { console.log(res); setInfo(res); props.setInfo1(res) });
+    
   }
 
 
+//console.log(props)
 
-  // const ocultar = () => {
-  //   let test = document.querySelector(".contenedorinfopiloto")
-  //   if (test.style.display == 'inline') {
-  //     test.style.display = 'block';
-  //   } else {
-  //     test.style.display = 'none'
-  //   }
-  // }
 
 
   useEffect(() => {
@@ -200,6 +193,7 @@ const PilotosUsuarios = (props) => {
 
       <div class="pilotosusuario">
 
+      
     
         {props.pilotoA ? props.pilotoA.map((piloto, i) => {
           return (

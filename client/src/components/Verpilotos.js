@@ -16,11 +16,13 @@ function Verpilotos(props) {
   
 
   const ocultar = () => {
+    
     let test = document.querySelector(".contenedorinfopiloto")
     if (test.style.display == 'inline') {
       test.style.display = 'block';
     } else {
       test.style.display = 'none'
+      setInfo("")
     }
   }
 
@@ -61,6 +63,10 @@ function Verpilotos(props) {
 
   }, [])
 
+  // const recojerDatoHijo = (data) => {
+  //   console.log(data)
+  // }
+console.log(info)
 
   return (
     <div className="flex" class="divpilotos">
@@ -86,14 +92,14 @@ function Verpilotos(props) {
 
       
       <div class="pilotosusuario">
-      <PilotosUsuarios pilotoA={pilotos[0]} boton={0}/>
+      <PilotosUsuarios pilotoA={pilotos[0]} boton={0} setInfo1={setInfo}/>
         
 
         {message2 ?
 
-          <PilotosUsuarios pilotoA={pilotos[1]} boton={1}/>
+          <PilotosUsuarios pilotoA={pilotos[1]} boton={1} setInfo1={setInfo}/>
 
-          :<PilotosUsuarios pilotoA={pilotos[1]} boton={2}/>
+          :<PilotosUsuarios pilotoA={pilotos[1]} boton={2} setInfo1={setInfo}/>
 
       }
 
@@ -104,14 +110,14 @@ function Verpilotos(props) {
 
         {message ?
 
-<PilotosUsuarios pilotoA={pilotos[2]} boton={3}/>
+<PilotosUsuarios pilotoA={pilotos[2]} boton={3} setInfo1={setInfo}/>
           
-:<PilotosUsuarios pilotoA={pilotos[2]} boton={4}/>
+:<PilotosUsuarios pilotoA={pilotos[2]} boton={4} setInfo1={setInfo}/>
 
         }
 
 
-<PilotosUsuarios pilotoA={pilotos[3]} boton={5}/>
+<PilotosUsuarios pilotoA={pilotos[3]} boton={5} setInfo1={setInfo}/>
         
 
 
