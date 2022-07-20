@@ -9,9 +9,9 @@ const sendMail = require("../email")
 
 
 const usuarios = {
-  
+
   registro: async (req, res) => {
-      console.log("backend")
+    console.log("backend")
     try {
       const nombre = req.body.respuesta.name
       const apellido = req.body.respuesta.lastname
@@ -80,19 +80,19 @@ const usuarios = {
 
   login: async (req, res) => {
     try {
-      
+
       const usuarioLogin = req.body.respuesta.usuarioLogin
       const passwordLogin = req.body.respuesta.passwordLogin
 
       //const { usuarioLogin, passwordLogin } = req.body;
       const usuario = await Usuario.findOne({
         where: { email: usuarioLogin },
-        
+
       });
       //console.log(usuarioLogin)
       //console.log(passwordLogin)
       if (!usuario) {
-      
+
         //res.send("El usuario no existe");
         res.json({
           message: "El usuario no existe",
@@ -106,47 +106,47 @@ const usuarios = {
 
 
 
-    };
+      };
 
-    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "45m" });
-    console.log(usuario.id_usuario)
+      const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "45m" });
+      console.log(usuario.id_usuario)
 
 
       if (checkPassword) {
-        
 
-        
+
+
         res.json({
           message: true,
-          id: usuario.id_usuario, 
+          id: usuario.id_usuario,
           rol: usuario.rol,
-          token:token,
-          
-      })
+          token: token,
 
-  
+        })
+
+
 
       } else {
-        
+
         res.json({
           message: `Contraseña erronea`,
         });
       }
     } catch (error) {
-        console.error(error);
-        res.send(error);
+      console.error(error);
+      res.send(error);
     }
   },
 
   verRanking: async (req, res) => {
     try {
 
- 
-      const objPuntos = await Ranking.findAll({order: [['puntos', 'desc']]});
-      let ranking =[];
+
+      const objPuntos = await Ranking.findAll({ order: [['puntos', 'desc']] });
+      let ranking = [];
       let usuarios = {};
 
-      for (let i = 0; i < objPuntos.length; i++){
+      for (let i = 0; i < objPuntos.length; i++) {
         usuarios[i] = await Usuario.findOne({
           where: { fk_ranking: objPuntos[i].id_ranking },
         });
@@ -164,7 +164,7 @@ const usuarios = {
         //ranking[i] = (`${usuarios[i].dataValues.nombre}`, `${objPuntos[i].puntos}`);
 
       }
-      
+
       // for (let i = 0; i < objPuntos.length; i++){
       //   usuarios[i] = await Usuario.findOne({
       //     where: { fk_ranking: objPuntos[i].id_ranking },
@@ -178,14 +178,14 @@ const usuarios = {
 
       //for (let key in ranking) {
 
-    
-        //console.log(key)
-       
-        //console.log(ranking[`${key}`])
 
-        
+      //console.log(key)
 
-    //}
+      //console.log(ranking[`${key}`])
+
+
+
+      //}
       //console.log(Object.keys(ranking).length)
 
 
@@ -207,11 +207,11 @@ const usuarios = {
         where: { id_usuario: fkuserid },
       });
       console.log(usuario)
-    res.json({
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
-      email: usuario.email
-    })
+      res.json({
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        email: usuario.email
+      })
 
     } catch (error) {
       console.error(error);
@@ -219,12 +219,12 @@ const usuarios = {
     }
   },
 
-cambiarNombre: async (req, res) => {
+  cambiarNombre: async (req, res) => {
     try {
 
       let fkuserid = req.body.respuesta.logId;
 
-       const cambioNombre = await Usuario.update({ nombre: req.body.respuesta.nombre }, {
+      const cambioNombre = await Usuario.update({ nombre: req.body.respuesta.nombre }, {
         where: { id_usuario: fkuserid },
       });
       const usuario = await Usuario.findOne({
@@ -232,11 +232,11 @@ cambiarNombre: async (req, res) => {
       });
 
       //console.log(usuario)
-    res.json({
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
-      email: usuario.email
-    })
+      res.json({
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        email: usuario.email
+      })
 
     } catch (error) {
       console.error(error);
@@ -250,7 +250,7 @@ cambiarNombre: async (req, res) => {
 
       let fkuserid = req.body.respuesta.logId;
 
-       const cambioApellido = await Usuario.update({ apellido: req.body.respuesta.apellido }, {
+      const cambioApellido = await Usuario.update({ apellido: req.body.respuesta.apellido }, {
         where: { id_usuario: fkuserid },
       });
       const usuario = await Usuario.findOne({
@@ -258,11 +258,11 @@ cambiarNombre: async (req, res) => {
       });
 
       //console.log(usuario)
-    res.json({
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
-      email: usuario.email
-    })
+      res.json({
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        email: usuario.email
+      })
 
     } catch (error) {
       console.error(error);
@@ -284,11 +284,11 @@ cambiarNombre: async (req, res) => {
       });
 
       //console.log(usuario)
-    res.json({
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
-      email: usuario.email
-    })
+      res.json({
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        email: usuario.email
+      })
 
     } catch (error) {
       console.error(error);
@@ -300,7 +300,7 @@ cambiarNombre: async (req, res) => {
     try {
 
       let fkuserid = req.body.respuesta.logId;
-      
+
       const cambioEmail = await Usuario.update({ email: req.body.respuesta.email }, {
         where: { id_usuario: fkuserid },
       });
@@ -309,11 +309,11 @@ cambiarNombre: async (req, res) => {
       });
 
       //console.log(usuario)
-    res.json({
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
-      email: usuario.email
-    })
+      res.json({
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        email: usuario.email
+      })
 
     } catch (error) {
       console.error(error);
@@ -324,54 +324,56 @@ cambiarNombre: async (req, res) => {
   administrarUsuarios: async (req, res) => {
     try {
 
-      
-      
-      
+
+
+
       const usuarios = await Usuario.findAll({
         where: { rol: false },
       });
-   
+
 
       //console.log(usuario)
-    res.json({usuarios
-      
-    })
+      res.json({
+        usuarios
+
+      })
 
     } catch (error) {
       console.error(error);
       res.send(error);
     }
   },
-  
+
 
   deleteUser: async (req, res) => {
     try {
 
-      
-     const usuario = req.body.respuesta.id
 
-     const usuariofk = await Usuario.findOne({
-      where: { id_usuario: usuario},
-    });
+      const usuario = req.body.respuesta.id
+
+      const usuariofk = await Usuario.findOne({
+        where: { id_usuario: usuario },
+      });
       const usuarios = await Usuario.destroy({
-        where: { id_usuario: usuario},
+        where: { id_usuario: usuario },
       });
 
       const ranking = await Ranking.destroy({
-        where: { id_ranking: usuariofk.fk_ranking},
+        where: { id_ranking: usuariofk.fk_ranking },
       });
-      
+
+      sendMail("formula1fantasytb@gmail.com", `${usuariofk.email}`, "Cuenta borrada", "Su cuenta ha sido borrada")
+
+      const usuariosN = await Usuario.findAll({
+        where: { rol: false },
+      });
 
 
-    const usuariosN = await Usuario.findAll({
-      where: { rol: false },
-    });
- 
+      //console.log(usuario)
+      res.json({
+        usuariosN
 
-    //console.log(usuario)
-  res.json({usuariosN
-    
-  })
+      })
 
     } catch (error) {
       console.error(error);

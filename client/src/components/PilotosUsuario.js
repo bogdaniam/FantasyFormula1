@@ -128,7 +128,8 @@ const PilotosUsuarios = (props) => {
 
   function pintarBotones(boton, piloto) {
     if (boton == 0) {
-      const boton = <div class="divbotones"><Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
+      const boton = <div class="divbotones">
+        <Button onClick={() => vender(piloto.userid, piloto.id_piloto)} >Vender</Button>
         <Button onClick={() => desactivar(piloto.userid, piloto.id_piloto)} variant="success">Desactivar</Button>
         <Button onClick={() => verinfo(piloto.id_piloto)} variant="light">Info</Button>
       </div>

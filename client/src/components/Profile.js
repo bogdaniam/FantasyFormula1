@@ -16,8 +16,9 @@ const Perfil = (props) => {
   useEffect(() => {
 
     //para ver los pilotos de un usuario
-    let respuesta = { logId: JSON.parse(localStorage.getItem('user')).logId, token: JSON.parse(localStorage.getItem('token')).token }
-    console.log(respuesta)
+    //let respuesta = { logId: JSON.parse(localStorage.getItem('user')).logId, token: JSON.parse(localStorage.getItem('token')).token }
+    let respuesta = { logId: JSON.parse(localStorage.getItem('user')).logId }
+    //console.log(respuesta)
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

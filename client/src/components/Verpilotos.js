@@ -113,7 +113,6 @@ console.log(info)
 
       </div>
 
-      {/* <p className="cargando"> Pilotos Restantes</p> */}
       <div class="pilotosusuario">
 
         {message ?

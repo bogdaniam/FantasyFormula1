@@ -31,7 +31,8 @@ const Home = (props) => {
 
           <div class="infoapp">
             <p class="descripcion">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Quieres vivir la Formula 1 como nunca antes? ¿Estas dispuesto a convertirte el rey de la competición? Con Formula1 Fantasy podrás vivir la experiencia de formar tu propia escudería, así como competir contra otros usuarios de todo el mundo.
+            Compra, vende, apuesta. Cada Domingo podrás ganar mas puntos al finalizar la carrera y así poder comprar nuevos pilotos que te ayuden a alcanzar el puesto numero 1 y se el campeon de FORMULA 1 FANTASY!!!
             </p>
           </div>
         </div>
@@ -39,11 +40,12 @@ const Home = (props) => {
 
         <div class="actualizacion">
           <h4>
-            Proximamente
+            Proxima actualizacion
           </h4>
-          <p>CHAT: Los usuarios van a tener la posibilidad de manteenre conversaciones</p>
-          <p>Cartas Especiales: Multiplica los puntos de uno de tus pilotos</p>
-          <p>Presupuesto: Los usuarios fieles van a conseguir un premio diariamente</p>
+          <p>CHAT: Podras comunicarte con otros usuarios</p>
+          <p>PILOTOS LEGENDARIOS: Podras contar en tu equipo con los mejores pilotos de la historia</p>
+          <p>BONIFICACIONES: Cuanto mas uses la aplicacion, mas puntos tendras</p>
+          
         </div>
       </div>
 

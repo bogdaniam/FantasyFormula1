@@ -38,14 +38,11 @@ const pilotos = {
       const usuario = await Usuario.findOne({
         where: { id_usuario: fkuserid },
       });
-      //console.log(usuario.presupuesto)
-      //const usuarioPiloto = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid }});
-      //const pilotos = await Pilotos.findAll({ where: { id_piloto: usuarioPiloto.fk_piloto }});
-      //console.log(usuarioPiloto)
-      //const piloto = await Pilotos.findAll({});
+      
 
       //se busca todos los pilotos que tiene el usuario logeado activados
       const usuarioPilotoA = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid, estado: true } });
+
       //se busca todos los pilotos que tiene el usuario logeado desactivados
       const usuarioPilotoR = await UsuariosPilotos.findAll({ where: { fk_usuario: fkuserid, estado: false } });
 
@@ -147,7 +144,7 @@ const pilotos = {
 
       //para dar o quitar premiso al usuario a la hora de comprar pilotos...maximo 5 pilotos
       let pilotosRestantes = pilotosRestantesMenos.length + pilotosRestantesMayor.length
-      let data3 = {}
+      //let data3 = {}
       if (pilotosRestantes > 15) {
         res.json(
           {
@@ -169,7 +166,7 @@ const pilotos = {
           }
         )
       }
-      pilotosTodos.push(data3)
+      //pilotosTodos.push(data3)
       //console.log(pilotosTodos[3])
       //console.log(pilotosTodos)
       //console.log(piloto[0][0])
@@ -370,25 +367,12 @@ const pilotos = {
 
 
 
-              // let positionPiloto = resultados.Results[i].position
-              // let numeroPiloto = resultados.Results[i].number
-              // //console.log(resultados.Results[i].number)
-              // //console.log(resultados.Results[i].position)
-              // // const piloto = await Pilotos.findOne({
-              // //   where: { numero: numeroPiloto },
-              // // });
-              // const resultado = await Resultado.create({
-              //   fecha: fecha,
-              //   fk_piloto: piloto.id_piloto,
-              //   fk_puntuacion: positionPiloto,
-              // });
-
-        //console.log(piloto)
+              
       }
 
 
 
-      //console.log(piloto);
+
       res.json({
         //resultados
 
