@@ -1,0 +1,371 @@
+.App {
+  text-align: center;
+  
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navb {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.mainapp {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+
+
+.aviso{
+  margin: 3rem 0rem 5rem 0rem;
+  padding-bottom: 1rem;
+
+}
+
+.recuperarcontrasena {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 30rem;
+  height: 10rem;
+}
+
+.admin{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.usuarios{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.usuario{
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem !important;
+}
+
+.actualizar{
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+body{
+  background-image: url("C:\Users\mihai\Desktop\FantasyFormula1\client\public\img\background.jpg") ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+}
+
+.centrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+}
+
+
+.registro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+
+}
+
+.datosUsuario {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cambiarDatos{
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(96, 205, 255, 0.927);
+  border-style: solid ;
+  border-color: rgb(3, 150, 208);
+  border-width: 3px;
+  margin-top: 4rem;
+  width: 50%;
+  padding-bottom: 6rem;
+  border-radius: 1rem;
+}
+
+.ranking {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.card {
+  margin: 1rem !important;
+  background-color: rgba(96, 205, 255, 0.927) !important;
+}
+
+.App{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1%;
+}
+.cargando{
+  text-align: center;
+}
+
+.divpilotos {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pilotosusuario {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  z-index: 1;
+
+}
+
+.contenedorinfopiloto{
+  display: none;
+  z-index: 100;
+  position: sticky;
+  top: 252px;
+  background-color: #b5cefd;
+  border-radius: 20px;
+  padding: 10px;
+  width: 60%;
+}
+
+.ocultar{
+  display: flex;
+  justify-content: flex-end;
+  padding: 3px;
+  color: red;
+}
+
+.ocultar:hover{
+  cursor: pointer;
+}
+
+.divdatosusuario{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  
+
+}
+
+.datosusuario{
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.927) !important;
+  margin: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 5%;
+}
+
+span {
+  color: rgb(0, 51, 255);
+}
+
+.divbotones {
+  display: flex;
+  justify-content: space-around;
+}
+
+.headerNav {
+  box-sizing: border-box;
+  background-color: rgb(190, 190, 190);
+  /* background-color: #282C34; */
+  width: 100%;
+  min-height: 7vh;
+  display: flex;
+  flex-direction: row;
+  font-size: calc(10px + 2vmin);
+  color: rgb(47, 196, 255);
+  flex-wrap: nowrap;
+  }
+  
+  .navbar-sing {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 7vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  z-index: 1;
+  /* background-color: #282C34; */
+  align-items: center;
+  flex-wrap: nowrap;
+  }
+  
+  
+  .buttonHome {
+  font-family: 'Poppins', sans-serif;
+  width: 71px;
+  height: 31px;
+  background: none;
+  margin-right: 3px;
+  border: none;
+  color: rgb(5, 113, 255);
+  font-size: 19px;
+  text-decoration: none;
+  }
+  .buttonHome:hover {
+  /* background-color: #111111; */
+  color: #111111;
+  }
+  
+  .titulo{
+   font-size: 3rem;
+  }
+
+  .divtitulo {
+    margin: 3rem;
+    background-color: #ffdd00e9;
+    border-radius: 3rem 0rem 3rem 0rem;
+    padding: 2rem;
+  }
+
+  .divinfoyactualizacion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-height: 50%;
+  }
+
+  .divinfo{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border: #ff0000;
+    border-radius: 1rem;
+
+    
+  }
+
+  .infofoto{
+    width: 100%;
+    height: 40%;
+    border-radius: 1rem 1rem 0rem 0rem;
+    
+  }
+
+  .infoapp {
+    background-color: rgb(146, 195, 255);
+    width: 100%;
+    height: 60%;
+    border-radius: 0rem 0rem 1rem 1rem;
+  }
+
+  .descripcion{
+    padding: 1rem;
+  }
+
+  .actualizacion {
+    background-color: rgb(146, 195, 255);
+    display: flex;
+    flex-direction: column;
+    width:40%;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  
+
+  
+
